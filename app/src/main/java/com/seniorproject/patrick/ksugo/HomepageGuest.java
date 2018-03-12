@@ -1,6 +1,7 @@
 package com.seniorproject.patrick.ksugo;
 
 import android.content.Intent;
+import android.media.Image;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -13,6 +14,7 @@ public class HomepageGuest extends AppCompatActivity {
     private ImageButton InteractiveMap;
     private ImageButton News;
     private ImageButton Events;
+    private ImageButton Emergency;
 
 
     @Override
@@ -25,15 +27,17 @@ public class HomepageGuest extends AppCompatActivity {
         InteractiveMap = (ImageButton) findViewById(R.id.CampusMap);
         News = (ImageButton) findViewById(R.id.NewsButton);
         Events = (ImageButton) findViewById(R.id.EventsButton);
+        Emergency = (ImageButton) findViewById(R.id.emergencyButton);
 
-
-        BOB.setOnClickListener(new View.OnClickListener() {
+        // Emergency
+        Emergency.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                startActivity(new Intent(HomepageGuest.this, EmergencyActivity.class));
             }
         });
 
+        // Contact Directory
         ContactDirectory.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -41,13 +45,7 @@ public class HomepageGuest extends AppCompatActivity {
             }
         });
 
-        InteractiveMap.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-            }
-        }); //Need User Type
-
+        // NewsFeed
         News.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -55,6 +53,24 @@ public class HomepageGuest extends AppCompatActivity {
             }
         });
 
+        // BOB
+        BOB.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+
+        // Map
+        InteractiveMap.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        }); //Need User Type
+
+
+        //Events
         Events.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -34,7 +34,7 @@ public class HomepageStudentTeacher extends AppCompatActivity {
         Emergency = (ImageButton) findViewById(R.id.emergencyButton);
 
 
-        //Still Need to implement these.
+        // D2L - Still Need to implement these.
         D2L.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -42,13 +42,15 @@ public class HomepageStudentTeacher extends AppCompatActivity {
             }
         }); //Need a method to get User Type.
 
+        // Emergency
         Emergency.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(HomepageStudentTeacher.this, EmergencyActivity.class));
             }
-        }); //Need a method to get User Type.
+        });
 
+        // Directory
         ContactDirectory.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -56,7 +58,23 @@ public class HomepageStudentTeacher extends AppCompatActivity {
             }
         });
 
+        // NewsFeed
+        News.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(HomepageStudentTeacher.this, NewsFeed.class));
+            }
+        });
 
+        // Owl Life
+        OwlLife.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+
+        // Handshake
         Handshake.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -64,6 +82,7 @@ public class HomepageStudentTeacher extends AppCompatActivity {
             }
         });
 
+        // BOB
         BOB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -71,13 +90,7 @@ public class HomepageStudentTeacher extends AppCompatActivity {
             }
         });
 
-        ContactDirectory.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(HomepageStudentTeacher.this, Directory.class));
-            }
-        });
-
+        // Maps
         InteractiveMap.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -85,13 +98,8 @@ public class HomepageStudentTeacher extends AppCompatActivity {
             }
         }); //Need User Type
 
-        News.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-            startActivity(new Intent(HomepageStudentTeacher.this, NewsFeed.class));
-            }
-        });
 
+        // Events
         Events.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
