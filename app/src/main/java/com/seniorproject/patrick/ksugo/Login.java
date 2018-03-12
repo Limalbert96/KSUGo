@@ -69,7 +69,7 @@ public class Login extends AppCompatActivity {
 
 
     private void validate(String user, String password) {
-        if (user.equals("admin") && password.equals("1234")) {
+        if (user.equals("phileri1") && password.equals("1234")) {
             if (remember.isChecked()) {
                 loginEdit.putBoolean("saveLogin", true);
                 loginEdit.putString("username", user);
