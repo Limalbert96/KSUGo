@@ -1,9 +1,8 @@
 package com.seniorproject.patrick.ksugo;
 
 import android.content.Intent;
-import android.media.Image;
-import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 
@@ -14,7 +13,8 @@ public class HomepageGuest extends AppCompatActivity {
     private ImageButton InteractiveMap;
     private ImageButton News;
     private ImageButton Events;
-    private ImageButton Emergency;
+    private ImageButton Logout;
+
 
 
     @Override
@@ -27,33 +27,8 @@ public class HomepageGuest extends AppCompatActivity {
         InteractiveMap = (ImageButton) findViewById(R.id.CampusMap);
         News = (ImageButton) findViewById(R.id.NewsButton);
         Events = (ImageButton) findViewById(R.id.EventsButton);
-        Emergency = (ImageButton) findViewById(R.id.emergencyButton);
+        Logout = (ImageButton) findViewById(R.id.LogoutButton);
 
-        // Emergency
-        Emergency.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(HomepageGuest.this, EmergencyActivity.class));
-            }
-        });
-
-        // Contact Directory
-        ContactDirectory.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(HomepageGuest.this, Directory.class));
-            }
-        });
-
-        // NewsFeed
-        News.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(HomepageGuest.this, NewsFeed.class));
-            }
-        });
-
-        // BOB
         BOB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -61,7 +36,13 @@ public class HomepageGuest extends AppCompatActivity {
             }
         });
 
-        // Map
+        ContactDirectory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+
         InteractiveMap.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -69,8 +50,13 @@ public class HomepageGuest extends AppCompatActivity {
             }
         }); //Need User Type
 
+        News.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
-        //Events
+            }
+        });
+
         Events.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -78,6 +64,13 @@ public class HomepageGuest extends AppCompatActivity {
             }
         });
 
+        Logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(HomepageGuest.this, Login.class);
+                startActivity(intent);
+            }
+        });
 
     }
 }

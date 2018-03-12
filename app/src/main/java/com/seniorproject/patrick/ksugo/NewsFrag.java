@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
@@ -33,6 +34,7 @@ public class NewsFrag extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+    private TextView studentName;
    // private TableLayout tableLayout;
 
     // TODO: Rename and change types of parameters
@@ -83,13 +85,9 @@ public class NewsFrag extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view= inflater.inflate(R.layout.news_tab, container, false);
-
-
-                String[] list = {"D2L will be down for maintenance Sunday Feb 25 ", "Quiz 3 is due soon",
-                "Chemistry is canceled today. Car broke down", "Career Fair is this week"};
-        ListAdapter adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, list);
-        ListView listView=(ListView) view.findViewById(R.id.listView1);
-        listView.setAdapter(adapter);
+        studentName=(TextView)view.findViewById(R.id.student_name);
+        studentName.setText(D2L.member.getName());
+        addAnnouncements(view);
         return view;
     }
 
@@ -131,6 +129,39 @@ public class NewsFrag extends Fragment {
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
+    }
+    public void addAnnouncements(View view) {
+        TableLayout announcementsTable = (TableLayout) view.findViewById(R.id.announcementTable);
+        ArrayList<Course> courses = D2L.courses1;
+        announcementsTable.setColumnShrinkable(0,true);
+        int counter=0;
+        for (int i = 0; i < courses.size(); i++) {
+
+            for (int j = 0; j < courses.get(i).getAnnouncemnts().size(); j++) {
+                TableRow row = new TableRow(getActivity().getApplicationContext());
+                TextView announcement = new TextView(getActivity().getApplicationContext());
+                TextView date = new TextView(getActivity().getApplicationContext());
+                date.setTextColor(getResources().getColor(R.color.black));
+                announcement.setTextColor(getResources().getColor(R.color.black));
+                if(courses.get(i).getAnnouncemnts().size()!=0){
+                    TableRow row2= new TableRow(getActivity().getApplicationContext());
+                    announcement.setText(courses.get(i).getAnnouncemnts().get(j).getAnnoucementName());
+                    if(counter%2==0){
+                        row.setBackgroundColor(getContext().getResources().getColor(R.color.rowBackground));
+                    }
+                    else{
+                        row.setBackgroundColor(getContext().getResources().getColor(R.color.white));
+                    }
+                    row.addView(announcement);
+
+                    announcementsTable.addView(row);
+                    counter++;
+
+                }
+
+            }
+
+        }
     }
 
 }

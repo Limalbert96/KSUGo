@@ -1,6 +1,9 @@
 package com.seniorproject.patrick.ksugo;
 
+import java.util.Collections;
+import java.util.Date;
 import java.util.ArrayList;
+import java.util.Comparator;
 
 /**
  * Created by patri on 2/20/2018.
@@ -37,21 +40,21 @@ public class Course {
     public String getCourseID() {
         return courseID;
     }
-
     public void setCourseID(String courseID) {
         this.courseID = courseID;
     }
-
     public void addAssignment(Assignments assignment){
         assignments.add(assignment);
     }
+    public void addAnnouncement(int index,Annoucements annoucement){
+        announcemnts.add(index,annoucement);
+    }
     public void addAnnoucements(Annoucements annoucement){
-        announcemnts.add(annoucement);
+        announcemnts.add(0,annoucement);
     }
     public ArrayList<Assignments> getAssignments() {
         return assignments;
     }
-
     public void setAssignments(ArrayList<Assignments> assignments) {
         this.assignments = assignments;
     }
@@ -59,6 +62,13 @@ public class Course {
     public void setAnnouncemnts(ArrayList<Annoucements> announcemnts) {
         this.announcemnts = announcemnts;
     }
+    public void sortAssignments(){
+        Collections.sort(assignments, new Comparator<Assignments>() {
+            @Override
+            public int compare(Assignments assignment1, Assignments assignment2) {
+                return assignment1.getDueDate().compareTo(assignment2.getDueDate()) ;
+            }
+        });    }
 
     public void deleteAnnoucement(int annoucementIndex){
         announcemnts.remove(annoucementIndex);
@@ -100,5 +110,5 @@ public class Course {
     }
 
 
-
 }
+
