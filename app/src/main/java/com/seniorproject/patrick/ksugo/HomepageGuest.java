@@ -37,7 +37,7 @@ public class HomepageGuest extends AppCompatActivity {
         ContactDirectory.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                startActivity(new Intent(HomepageGuest.this, Directory.class));
             }
         });
 

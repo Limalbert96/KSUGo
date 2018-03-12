@@ -74,7 +74,7 @@ public class HomepageStudentTeacher extends AppCompatActivity {
         ContactDirectory.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                startActivity(new Intent(HomepageStudentTeacher.this, Directory.class));
             }
         });
 
