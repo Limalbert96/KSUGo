@@ -1,8 +1,8 @@
 package com.seniorproject.patrick.ksugo;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageButton;
 
@@ -13,8 +13,6 @@ public class HomepageGuest extends AppCompatActivity {
     private ImageButton InteractiveMap;
     private ImageButton News;
     private ImageButton Events;
-    private ImageButton Logout;
-
 
 
     @Override
@@ -27,7 +25,7 @@ public class HomepageGuest extends AppCompatActivity {
         InteractiveMap = (ImageButton) findViewById(R.id.CampusMap);
         News = (ImageButton) findViewById(R.id.NewsButton);
         Events = (ImageButton) findViewById(R.id.EventsButton);
-        Logout = (ImageButton) findViewById(R.id.LogoutButton);
+
 
         BOB.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -53,7 +51,7 @@ public class HomepageGuest extends AppCompatActivity {
         News.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                startActivity(new Intent(HomepageGuest.this, NewsFeed.class));
             }
         });
 
@@ -64,13 +62,6 @@ public class HomepageGuest extends AppCompatActivity {
             }
         });
 
-        Logout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(HomepageGuest.this, Login.class);
-                startActivity(intent);
-            }
-        });
 
     }
 }
