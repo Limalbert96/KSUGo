@@ -19,7 +19,7 @@ public class OwlLife extends AppCompatActivity {
 
     private static final String TAG = "OwlLife";
 
-    private SectionPageAdapter mSectionPageAdapter;
+    //private SectionPageAdapter mSectionPageAdapter;
 
     private ViewPager mViewPager;
 

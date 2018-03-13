@@ -80,7 +80,7 @@ public class HomepageStudentTeacher extends AppCompatActivity {
         Handshake.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                startActivity(new Intent(HomepageStudentTeacher.this, Handshake.class));
             }
         });
 
