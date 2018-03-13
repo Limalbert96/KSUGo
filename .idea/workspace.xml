@@ -6,27 +6,7 @@
     </shared>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="592fe98d-0aa8-476f-8844-cd73c129b4b6" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/java/com/seniorproject/patrick/ksugo/MemberKSU.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_course_annoucements_student.xml" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/seniorproject/patrick/ksugo/Assignments.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/seniorproject/patrick/ksugo/Assignments.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/seniorproject/patrick/ksugo/AssignmentsFrag.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/seniorproject/patrick/ksugo/AssignmentsFrag.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/seniorproject/patrick/ksugo/Course.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/seniorproject/patrick/ksugo/Course.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/seniorproject/patrick/ksugo/CourseAnnouncements.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/seniorproject/patrick/ksugo/CourseAnnouncements.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/seniorproject/patrick/ksugo/CourseAssignments.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/seniorproject/patrick/ksugo/CourseAssignments.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/seniorproject/patrick/ksugo/D2L.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/seniorproject/patrick/ksugo/D2L.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/seniorproject/patrick/ksugo/HomepageGuest.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/seniorproject/patrick/ksugo/HomepageGuest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/seniorproject/patrick/ksugo/NewsFrag.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/seniorproject/patrick/ksugo/NewsFrag.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/drawable/ic_launcher_background.xml" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_launcher_background.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_course_annoucements.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_course_annoucements.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_course_assignments.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_course_assignments.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_d2_l.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_d2_l.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/content_emergency.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/content_emergency.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/courses_tab.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/courses_tab.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/news_tab.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/news_tab.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/values/colors.xml" afterPath="$PROJECT_DIR$/app/src/main/res/values/colors.xml" />
-    </list>
+    <list default="true" id="592fe98d-0aa8-476f-8844-cd73c129b4b6" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -48,8 +28,8 @@
             <state />
           </provider>
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="16" column="27" lean-forward="false" selection-start-line="16" selection-start-column="27" selection-end-line="16" selection-end-column="27" />
+            <state relative-caret-position="540">
+              <caret line="36" column="11" lean-forward="true" selection-start-line="36" selection-start-column="11" selection-end-line="36" selection-end-column="11" />
               <folding />
             </state>
           </provider>
@@ -2011,7 +1991,7 @@
       <option name="ACTIVITY_CLASS" value="" />
       <method>
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
-        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1520954669129" />
+        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1520954722463" />
       </method>
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
@@ -2111,7 +2091,7 @@
       <option name="ACTIVITY_CLASS" value="" />
       <method>
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
-        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1520954669130" />
+        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1520954722463" />
       </method>
     </configuration>
     <list size="1">
@@ -2198,8 +2178,8 @@
         <state />
       </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="16" column="27" lean-forward="false" selection-start-line="16" selection-start-column="27" selection-end-line="16" selection-end-column="27" />
+        <state relative-caret-position="540">
+          <caret line="36" column="11" lean-forward="true" selection-start-line="36" selection-start-column="11" selection-end-line="36" selection-end-column="11" />
           <folding />
         </state>
       </provider>
