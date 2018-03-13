@@ -13,7 +13,7 @@
         android:roundIcon="@mipmap/ic_launcher2_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Login">
+        <activity android:name=".Login" android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -21,17 +21,17 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".CourseContent"/>
-        <activity android:name=".CourseAnnouncements" />
-        <activity android:name=".CourseAssignments" />
-        <activity android:name=".CourseDiscussion" />
-        <activity android:name=".CourseGrades" />
-        <activity android:name=".HomepageStudentTeacher" />
-        <activity android:name=".D2L" />
-        <activity android:name=".HomepageGuest" />
-        <activity android:name=".EmergencyActivity" />
-        <activity android:name=".Directory"/>
-        <activity android:name=".NewsFeed"/>
+        <activity android:name=".CourseContent" android:screenOrientation="portrait"/>
+        <activity android:name=".CourseAnnouncements" android:screenOrientation="portrait"/>
+        <activity android:name=".CourseAssignments" android:screenOrientation="portrait"/>
+        <activity android:name=".CourseDiscussion" android:screenOrientation="portrait"/>
+        <activity android:name=".CourseGrades" android:screenOrientation="portrait"/>
+        <activity android:name=".HomepageStudentTeacher" android:screenOrientation="portrait"/>
+        <activity android:name=".D2L" android:screenOrientation="portrait"/>
+        <activity android:name=".HomepageGuest" android:screenOrientation="portrait"/>
+        <activity android:name=".EmergencyActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".Directory" android:screenOrientation="portrait"/>
+        <activity android:name=".NewsFeed" android:screenOrientation="portrait"/>
     </application>
 
 </manifest>
