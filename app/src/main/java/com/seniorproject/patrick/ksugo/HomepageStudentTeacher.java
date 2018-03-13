@@ -70,6 +70,8 @@ public class HomepageStudentTeacher extends AppCompatActivity {
         OwlLife.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                startActivity(new Intent(HomepageStudentTeacher.this, OwlLife.class));
+
 
             }
         });
@@ -86,6 +88,8 @@ public class HomepageStudentTeacher extends AppCompatActivity {
         BOB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                startActivity(new Intent(HomepageStudentTeacher.this, BOB.class));
+
 
             }
         });
