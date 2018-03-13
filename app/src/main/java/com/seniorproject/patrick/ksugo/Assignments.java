@@ -1,5 +1,8 @@
 package com.seniorproject.patrick.ksugo;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Formatter;
 import java.util.Locale;
 
@@ -8,14 +11,14 @@ import java.util.Locale;
  */
 
 public class Assignments {
-    private String dueDate;
+    private Date dueDate;
     private String assignmentName;
     private String dueTime;
 
 
 
     public Assignments(){}
-    public Assignments( String dueDate, String assignmentName, String dueTime) {
+    public Assignments(Date dueDate, String assignmentName, String dueTime) {
 
         this.dueDate = dueDate;
         this.assignmentName = assignmentName;
@@ -23,11 +26,11 @@ public class Assignments {
     }
 
 
-    public String getDueDate() {
+    public Date getDueDate() {
         return dueDate;
     }
 
-    public void setDueDate(String dueDate) {
+    public void setDueDate(Date dueDate)  {
         this.dueDate = dueDate;
     }
 
@@ -44,6 +47,10 @@ public class Assignments {
 
     public void setDueTime(String dueTime) {
         this.dueTime = dueTime;
+    }
+    public String dateToString(){
+        SimpleDateFormat dateFormat=new SimpleDateFormat("E, MMMM dd");
+        return  dateFormat.format(dueDate);
     }
 
     public String toString(){
