@@ -15,9 +15,7 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 
 
 /**
@@ -142,7 +140,6 @@ public class AssignmentsFrag extends Fragment {
 
     }*/
     public void addTableAssignments(View view){
-        ArrayList<Date>allDates=new ArrayList<>();
         TableLayout assignmentsTable=(TableLayout) view.findViewById(R.id.assignmentsTable);
         ArrayList<Course>courses=D2L.courses1;
         for(int i=0;i<courses.size();i++){
@@ -161,9 +158,8 @@ public class AssignmentsFrag extends Fragment {
                 courseName.setTextColor(getResources().getColor(R.color.black));
                 if(j==0){
                     TableRow row2= new TableRow(getActivity().getApplicationContext());
-                    dueDate.setText(courses.get(i).getAssignments().get(j).dateToString());
+                    dueDate.setText(courses.get(i).getAssignments().get(j).getDueDate());
                     row.addView(dueDate);
-                    allDates.add(courses.get(i).getAssignments().get(j).getDueDate());
 
                     courseName.setText(courses.get(i).getCourseName()+" ");
                     assignmentName.setText(courses.get(i).getAssignments().get(j).getAssignmentName()+" ");
@@ -176,19 +172,22 @@ public class AssignmentsFrag extends Fragment {
                     assignmentsTable.addView(row2);
 
                 }
-                else if(allDates.contains(courses.get(i).getAssignments().get(j-1).getDueDate())){
+                else if(courses.get(i).getAssignments().get(j).getDueDate()==courses.get(i).getAssignments().get(j-1).getDueDate()){
                     courseName.setText(courses.get(i).getCourseName()+" | ");
                     assignmentName.setText(courses.get(i).getAssignments().get(j).getAssignmentName()+" | ");
                     timeDue.setText(courses.get(i).getAssignments().get(j).getDueTime());
+
+
                     row.addView(courseName);
                     row.addView(assignmentName);
                     row.addView(timeDue);
                     assignmentsTable.addView(row);
 
+
                 }
                 else {
                     TableRow row2= new TableRow(getActivity().getApplicationContext());
-                    dueDate.setText(courses.get(i).getAssignments().get(j).dateToString());
+                    dueDate.setText(courses.get(i).getAssignments().get(j).getDueDate());
                     row.addView(dueDate);
 
                     courseName.setText(courses.get(i).getCourseName());

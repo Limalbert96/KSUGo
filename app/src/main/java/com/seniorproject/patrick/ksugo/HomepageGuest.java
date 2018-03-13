@@ -67,7 +67,7 @@ public class HomepageGuest extends AppCompatActivity {
             public void onClick(View view) {
 
             }
-        }); //Need User Type
+        });
 
 
         //Events

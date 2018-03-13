@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.EditText;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TableLayout;
@@ -31,8 +30,10 @@ public class CourseAssignments extends AppCompatActivity {
 
     public void onClick(View view) {
         finish();
+//        startActivity(new Intent(CourseAssignments.this,D2L.class));
 
     }
+
     public void addAssignmentTable(){
       ArrayList<Course> courses = D2L.courses1;
         Course selectedCourse= new Course();
@@ -56,8 +57,7 @@ public class CourseAssignments extends AppCompatActivity {
                 timeDue.setTextColor(getResources().getColor(R.color.black));
                 if(j==0){
                     TableRow row2= new TableRow(getApplicationContext());
-                    dueDate.setText(selectedCourse.getAssignments().get(j).dateToString()
-                    );
+                    dueDate.setText(selectedCourse.getAssignments().get(j).getDueDate());
                     row.addView(dueDate);
 
                     assignmentName.setText(selectedCourse.getAssignments().get(j).getAssignmentName()+" ");
@@ -82,7 +82,7 @@ public class CourseAssignments extends AppCompatActivity {
                 }
                 else {
                     TableRow row2= new TableRow(getApplicationContext());
-                    dueDate.setText(selectedCourse.getAssignments().get(j).dateToString());
+                    dueDate.setText(selectedCourse.getAssignments().get(j).getDueDate());
                     row.addView(dueDate);
 
                     assignmentName.setText(selectedCourse.getAssignments().get(j).getAssignmentName());
@@ -99,7 +99,6 @@ public class CourseAssignments extends AppCompatActivity {
 
             }
     }
-
 }
 
 
