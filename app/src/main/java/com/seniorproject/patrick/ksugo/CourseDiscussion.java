@@ -20,7 +20,7 @@ public class CourseDiscussion extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_course_discussions);
-        discussionBoard=(ListView) findViewById(R.id.discussion_boards);
+        //discussionBoard=(ListView) findViewById(R.id.discussion_boards);
         TextView textView=(TextView) findViewById(R.id.courseDiscussionsText);
         textView.setText(String.format("%s Discussions", D2L.selectedCourse));
         button=new Button(this);
