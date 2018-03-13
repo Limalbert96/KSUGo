@@ -136,6 +136,12 @@ public class NewsFrag extends Fragment {
         announcementsTable.setColumnShrinkable(0,true);
         int counter=0;
         for (int i = 0; i < courses.size(); i++) {
+            TableRow courseNameRow=new TableRow(getActivity().getApplicationContext());
+            TextView courseName=new TextView((getActivity().getApplicationContext()));
+            courseName.setTextColor(getResources().getColor(R.color.black));
+            courseName.setText(courses.get(i).getCourseName());
+            courseNameRow.addView(courseName);
+            announcementsTable.addView(courseNameRow);
 
             for (int j = 0; j < courses.get(i).getAnnouncemnts().size(); j++) {
                 TableRow row = new TableRow(getActivity().getApplicationContext());
