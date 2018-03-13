@@ -6,6 +6,7 @@ package com.seniorproject.patrick.ksugo;
 
 import android.app.LocalActivityManager;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
@@ -15,27 +16,40 @@ import android.view.View;
 import android.widget.TabHost;
 
 
-public class OwlLife extends AppCompatActivity {
+public class OwlLife extends AppCompatActivity  implements OwlLifeNews.OnFragmentInteractionListener,OwlLifeGroups.OnFragmentInteractionListener,
+        OwlLifeEvents.OnFragmentInteractionListener,OwlLifeHome.OnFragmentInteractionListener {
 
     private static final String TAG = "OwlLife";
 
-    //private SectionPageAdapter mSectionPageAdapter;
-
-    private ViewPager mViewPager;
+    private ViewPager viewPager;
+    private TabLayout tabLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_owllife);
-      /*  Log.d(TAG, "onCreate: Starting");
+        tabLayout = (TabLayout) findViewById(R.id.olTabs);
+        final OLFragmentAdapter adapter = new OLFragmentAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
+        viewPager = (ViewPager) findViewById(R.id.olContainer);
+        viewPager.setAdapter(adapter);
+        viewPager.setOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+        tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                viewPager.setCurrentItem(tab.getPosition());
+            }
 
-        mSectionPageAdapter = new SectionPageAdapter(getSupportFragmentManager());
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+            }
 
-        mViewPager = (ViewPager) findViewById(R.id.container);
-        setupViewPager(mViewPager);
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+            }
 
-        //TabLayout tablayout = (TabLayout) findViewById(R.id.tabs);
-        //tablayout.setupWithViewPager(mViewPager);*/
+        });
+
+
     }
 
   /*  private void setupViewPager(ViewPager viewPager){
@@ -57,5 +71,10 @@ public class OwlLife extends AppCompatActivity {
 */
     public void home(View view){
         finish();
+    }
+
+    @Override
+    public void onFragmentInteraction(Uri uri) {
+
     }
 }
