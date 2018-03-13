@@ -25,6 +25,9 @@ import android.widget.Toast;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Date;
 
 public class D2L extends AppCompatActivity implements CoursesFrag.OnFragmentInteractionListener,AssignmentsFrag.OnFragmentInteractionListener,
         NewsFrag.OnFragmentInteractionListener{
@@ -41,12 +44,16 @@ public class D2L extends AppCompatActivity implements CoursesFrag.OnFragmentInte
     public static ArrayList<Course> courses1=new ArrayList<Course>();
     public static String selectedCourse;
     public static ArrayList<Grades> allGrades=new ArrayList<>();
+    public static MemberKSU member;
+    public static ArrayList<Annoucements>globalAnnouncements=new ArrayList<>();
+    public static ArrayList<Assignments>allAssignments=new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_d2_l);
+        member=new MemberKSU("000111222",false,"Patrick Hilerio");
         tabLayout = (TabLayout) findViewById(R.id.all_tabs);
         news = (TabItem) findViewById(R.id.news);
         final FragmentAdapter adapter = new FragmentAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
@@ -84,8 +91,6 @@ public class D2L extends AppCompatActivity implements CoursesFrag.OnFragmentInte
 
     }
     public void onClick(View view){
-        TextView textView;
-
 
         switch (view.getId()){
             case R.id.annoucementButton:{
@@ -126,26 +131,26 @@ public class D2L extends AppCompatActivity implements CoursesFrag.OnFragmentInte
         Assignments assignment5=new Assignments();
 
         assignment1.setAssignmentName("Quiz 1");
-        assignment1.setDueDate("March 5th");
+        assignment1.setDueDate(new Date(2018,3,27));
         assignment1.setDueTime("11:59pm");
 
           assignment2.setAssignmentName("Assignment 1");
-          assignment2.setDueDate("March 10th");
+          assignment2.setDueDate(new Date(2018,3,26));
           assignment2.setDueTime("11:59pm");
 
           assignment3.setAssignmentName("Test 1");
-          assignment3.setDueDate("March 15th");
+          assignment3.setDueDate(new Date(2018,3,24));
           assignment3.setDueTime("10:00pm");
 
           assignment4.setAssignmentName("Assignment 2");
-          assignment4.setDueDate("March 20th");
+          assignment4.setDueDate(new Date(2018,4,10));
           assignment4.setDueTime("11:59pm");
 
           assignment5.setAssignmentName("Essay");
-          assignment5.setDueDate("March 25th");
+          assignment5.setDueDate(new Date(2018,3,6));
           assignment5.setDueTime("11:59pm");
          assignment5.setAssignmentName("SDD");
-      assignment5.setDueDate("Feb 22");
+      assignment5.setDueDate(new Date(2018,3,6));
       assignment5.setDueTime("11:59pm");
         Course chemistry=new Course();
         Course internetProgramming=new Course();
@@ -165,7 +170,7 @@ public class D2L extends AppCompatActivity implements CoursesFrag.OnFragmentInte
         Annoucements annoucement=new Annoucements("Class is canceled today");
         Annoucements annoucement1=new Annoucements("Study guide will be up this weekend");
         Annoucements annoucement2=new Annoucements("Grades are up for test 1. Most of you did well.");
-        Annoucements annoucement3=new Annoucements("Whoever left his/hers phone, you have a cut dog. Please pick up your phone by the end of the week. Or your dog is mine");
+        Annoucements annoucement3=new Annoucements("Whoever left his/her phone, you have a cute dog. Please pick up your phone by the end of the week. Or your dog is mine");
         Annoucements annoucement4=new Annoucements("Quiz 1 is ending soon. For those of you who haven't taken please do.");
         Annoucements annoucement5=new Annoucements("Presentation next week. Be prepared to have a working prototype");
 
@@ -179,8 +184,18 @@ public class D2L extends AppCompatActivity implements CoursesFrag.OnFragmentInte
         courses1.add(chemistry);
         courses1.add(internetProgramming);
         courses1.add(seniorProject);
-
-
+        for(Course course:courses1){
+            course.sortAssignments();
+            for(Assignments assignment: course.getAssignments()){
+                allAssignments.add(assignment);
+            }
+        }
+      Collections.sort(allAssignments, new Comparator<Assignments>() {
+          @Override
+          public int compare(Assignments assignment1, Assignments assignment2) {
+              return assignment1.getDueDate().compareTo(assignment2.getDueDate()) ;
+          }
+      });
   }
 
 public void addGrades(){
