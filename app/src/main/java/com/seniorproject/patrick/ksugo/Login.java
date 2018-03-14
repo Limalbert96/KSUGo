@@ -11,6 +11,8 @@ import android.widget.EditText;
 import android.widget.Switch;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 public class Login extends AppCompatActivity {
 
     private EditText ksuID;
@@ -21,6 +23,8 @@ public class Login extends AppCompatActivity {
     private TextView incorrectLogin;
     private SharedPreferences loginPref;
     private SharedPreferences.Editor loginEdit;
+    public static ArrayList<MemberKSU>membersKSU=new ArrayList<>();
+    public static MemberKSU member;
 
     private boolean saveLogin;
 
@@ -29,7 +33,8 @@ public class Login extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
+        membersKSU.add(new MemberKSU("phileri1","1234",false,"Patrick Hilerio"));
+        membersKSU.add(new MemberKSU("alim5","0000",true,"Albert Lim"));
         ksuID = (EditText) findViewById(R.id.userID);
         loginpassword = (EditText) findViewById(R.id.passwordField);
         remember = (Switch) findViewById(R.id.swLoginRem);
@@ -69,7 +74,10 @@ public class Login extends AppCompatActivity {
 
 
     private void validate(String user, String password) {
-        if (user.equals("phileri1") && password.equals("1234")) {
+
+        boolean isMember=false;
+        for(MemberKSU member:membersKSU){
+        if (user.equals(member.getUsername()) && password.equals(member.getPassword())) {
             if (remember.isChecked()) {
                 loginEdit.putBoolean("saveLogin", true);
                 loginEdit.putString("username", user);
@@ -82,8 +90,11 @@ public class Login extends AppCompatActivity {
                 loginpassword.setText("");
             }
             Intent intent = new Intent(Login.this, HomepageStudentTeacher.class);
+            isMember=true;
             startActivity(intent);
-        } else {
+            Login.member=member;
+        }
+        } if(isMember==false) {
             incorrectLogin.setVisibility(View.VISIBLE);
         }
     }

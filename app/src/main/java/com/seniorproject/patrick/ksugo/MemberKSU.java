@@ -7,7 +7,8 @@ import java.util.ArrayList;
  */
 
 public class MemberKSU {
-    private String id;
+    private String username;
+    private String password;
     private boolean isStudent=true;
     private String name;
     private ArrayList<String> courseName;//This will be equal to course name such as chem1211 plus the section number so, chem121110
@@ -16,25 +17,30 @@ public class MemberKSU {
     }
 
 
-    public MemberKSU(String id, boolean isStudent, String name, ArrayList<String> courseName) {
-        this.id = id;
+    public MemberKSU(String username,String password, boolean isStudent, String name, ArrayList<String> courseName) {
+        this.username = username;
+        this.password=password;
         this.isStudent = isStudent;
         this.name = name;
         this.courseName = courseName;
     }
 
-    public MemberKSU(String id, boolean isStudent, String name) {
-        this.id = id;
+
+
+    public MemberKSU(String username, String password, boolean isStudent, String name) {
+        this.username = username;
+        this.password=password;
+
         this.isStudent = isStudent;
         this.name = name;
     }
 
-    public String getId() {
-        return id;
+    public String getUsername() {
+        return username;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public boolean isStudent() {
@@ -59,5 +65,12 @@ public class MemberKSU {
 
     public void setCourseName(ArrayList<String> courseName) {
         this.courseName = courseName;
+    }
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

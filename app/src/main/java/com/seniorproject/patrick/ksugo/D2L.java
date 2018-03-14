@@ -53,7 +53,7 @@ public class D2L extends AppCompatActivity implements CoursesFrag.OnFragmentInte
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_d2_l);
-        member=new MemberKSU("000111222",false,"Patrick Hilerio");
+        member=Login.member;
         tabLayout = (TabLayout) findViewById(R.id.all_tabs);
         news = (TabItem) findViewById(R.id.news);
         final FragmentAdapter adapter = new FragmentAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
