@@ -7,7 +7,7 @@ import android.view.View;
 
 /**
  * Created by aschell3 on 3/12/2018.
- */
+         */
 
 public class BOB extends AppCompatActivity{
     @Override
@@ -22,7 +22,7 @@ public class BOB extends AppCompatActivity{
         startActivity(intent);
     }
 
-    public void home(View view){
+    public void bobHome(View view){
         finish();
     }
 }

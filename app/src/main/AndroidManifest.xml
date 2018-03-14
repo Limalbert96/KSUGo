@@ -34,6 +34,7 @@
         <activity android:name=".NewsFeed"/>
         <activity android:name=".Handshake"/>
         <activity android:name=".OwlLife"/>
+        <activity android:name=".BOB"/>
 
     </application>
 
