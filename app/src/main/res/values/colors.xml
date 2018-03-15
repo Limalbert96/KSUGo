@@ -8,4 +8,7 @@
     <color name="yellow">#ffff00</color>
     <color name="red">#ff0000</color>
     <color name="white">#ffffff</color>
+    <color name="twitterGray">#FF4B4A4A</color>
+    <color name="Twitter">#1da1f2</color>
+
 </resources>
