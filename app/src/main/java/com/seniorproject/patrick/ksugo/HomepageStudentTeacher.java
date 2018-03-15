@@ -107,6 +107,8 @@ public class HomepageStudentTeacher extends AppCompatActivity {
         Events.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                startActivity(new Intent(HomepageStudentTeacher.this, Events.class));
+
 
             }
         });
