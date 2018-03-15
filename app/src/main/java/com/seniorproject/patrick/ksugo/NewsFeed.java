@@ -25,7 +25,7 @@ import android.webkit.WebViewClient;
 
 public class NewsFeed extends AppCompatActivity {
 
-    Button a, b;
+    ImageButton a, b;
     private WebView myWebView;
 
     public void home(View view) {
@@ -73,7 +73,14 @@ public class NewsFeed extends AppCompatActivity {
                 WebSettings webSettings = myWebView.getSettings();
                 webSettings.setJavaScriptEnabled(true);
                 myWebView.loadUrl("https://www.facebook.com/pg/KennesawStateUniversity/posts/");
-                myWebView.setWebViewClient(new WebViewClient());
+                myWebView.setWebViewClient(new WebViewClient() {
+
+                    public void onPageFinished(WebView view, String url) {
+                        findViewById(R.id.facebookLoadingPanel).setVisibility(View.GONE);
+
+                    }
+                });
+
             }
         });
 
@@ -97,7 +104,9 @@ public class NewsFeed extends AppCompatActivity {
                             public void run() {
                                 ListView listView = (ListView) findViewById(R.id.listView3);
                                 try {
-                                    listView.setAdapter(new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1, tweets));
+                                    listView.setAdapter(new ArrayAdapter<String>(getApplicationContext(), R.layout.assignment_layoutfile,R.id.twitterText, tweets));
+                                    findViewById(R.id.loadingPanel).setVisibility(View.GONE);
+
                                 } catch (Exception e) {
                                     e.printStackTrace();
                                 }

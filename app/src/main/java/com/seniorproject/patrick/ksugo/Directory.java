@@ -31,7 +31,14 @@ public class Directory extends AppCompatActivity {
         WebSettings webSettings = myWebView.getSettings();
         webSettings.setJavaScriptEnabled(true);
         myWebView.loadUrl("http://directory.kennesaw.edu/dir/people/");
-        myWebView.setWebViewClient(new WebViewClient());
+        myWebView.setWebViewClient(new WebViewClient() {
+
+            public void onPageFinished(WebView view, String url) {
+                findViewById(R.id.directoryLoadingPanel).setVisibility(View.GONE);
+
+            }
+        });
+
     }
 
     public void onBackPressed(){

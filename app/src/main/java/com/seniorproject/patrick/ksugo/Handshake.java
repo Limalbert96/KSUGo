@@ -30,8 +30,15 @@ public class Handshake extends AppCompatActivity{
         WebSettings webSettings = handshakeWebView.getSettings();
         webSettings.setJavaScriptEnabled(true);
         handshakeWebView.loadUrl("https://kennesaw.joinhandshake.com");
-        handshakeWebView.setWebViewClient(new WebViewClient());
+        handshakeWebView.setWebViewClient(new WebViewClient() {
+
+            public void onPageFinished(WebView view, String url) {
+                findViewById(R.id.handshakeLoadingPanel).setVisibility(View.GONE);
+
+            }
+        });
     }
+
 
     public void onBackPressed(){
         if(handshakeWebView.canGoBack()){
