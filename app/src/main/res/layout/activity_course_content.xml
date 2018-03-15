@@ -42,7 +42,7 @@
                 android:onClick="onClick"
                 android:text="Back"
                 android:textColor="@android:color/white"
-                app:layout_constraintBottom_toTopOf="@+id/courAssignText"
+                app:layout_constraintBottom_toTopOf="@+id/courseContentText"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.024"
                 app:layout_constraintStart_toStartOf="parent"
@@ -72,7 +72,9 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="1.0">
+                app:layout_constraintVertical_bias="1.0"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="317dp">
 
             </ListView>
 
@@ -85,7 +87,8 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/modules"
-                app:layout_constraintTop_toTopOf="parent"></android.support.v4.view.ViewPager>
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginLeft="3dp" />
         </android.support.constraint.ConstraintLayout>
     </android.support.v4.widget.NestedScrollView>
 </android.support.design.widget.CoordinatorLayout>
