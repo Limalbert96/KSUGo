@@ -35,6 +35,8 @@
         <activity android:name=".Handshake"/>
         <activity android:name=".OwlLife"/>
         <activity android:name=".BOB"/>
+        <activity android:name=".Events"/>
+
 
     </application>
 
