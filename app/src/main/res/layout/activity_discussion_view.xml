@@ -27,7 +27,7 @@
                 android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
                 android:layout_weight="1"
-                android:text="Course Discussion"
+                android:text="Response"
                 android:textAppearance="@style/TextAppearance.AppCompat.SearchResult.Title"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -43,7 +43,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:background="@color/colorAccent"
-                android:onClick="onClick"
+                android:onClick="back"
                 android:text="Back"
                 android:textColor="@android:color/white"
                 app:layout_constraintBottom_toTopOf="@+id/courAssignText"
@@ -51,7 +51,6 @@
                 app:layout_constraintHorizontal_bias="0.024"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
-
         </android.support.constraint.ConstraintLayout>
 
     </android.support.design.widget.AppBarLayout>
@@ -64,50 +63,26 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/appbar">
 
-        <Spinner
-            android:id="@+id/discussionSelector"
+        <ListView
+            android:id="@+id/selectedDiscussionListView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@+id/replyDiscussionButton"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button
-            android:id="@+id/createDiscussionBoard"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:onClick="createNewDiscussionBoard"
-            android:text="+ Create "
-            android:visibility="invisible"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/discussionSelector"
-            app:layout_constraintVertical_bias="0.0" />
-
-        <ListView
-            android:id="@+id/discuListView"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_marginTop="8dp"
-            app:layout_constraintBottom_toTopOf="@+id/createNewDiscussion"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/createDiscussionBoard" />
-
-        <Button
-            android:id="@+id/createNewDiscussion"
+            android:id="@+id/replyDiscussionButton"
             style="@style/Widget.AppCompat.Button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="goToPostDiscussion"
-            android:text="+ Create New Discussion"
+            android:onClick="reply"
+            android:text="+ Reply"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/discuListView" />
+            app:layout_constraintTop_toBottomOf="@+id/selectedDiscussionListView" />
 
     </android.support.constraint.ConstraintLayout>
 

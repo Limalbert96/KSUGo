@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -20,14 +20,14 @@
 
 
             <TextView
-                android:id="@+id/courseDiscussionsText"
+                android:id="@+id/newDiscussionBoard"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
                 android:layout_weight="1"
-                android:text="Course Discussion"
+                android:text="New Discussion Board"
                 android:textAppearance="@style/TextAppearance.AppCompat.SearchResult.Title"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -43,8 +43,8 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:background="@color/colorAccent"
-                android:onClick="onClick"
-                android:text="Back"
+                android:onClick="cancelNewDiscussionBoard"
+                android:text="Cancel"
                 android:textColor="@android:color/white"
                 app:layout_constraintBottom_toTopOf="@+id/courAssignText"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -64,51 +64,65 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/appbar">
 
-        <Spinner
-            android:id="@+id/discussionSelector"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
 
-        <Button
-            android:id="@+id/createDiscussionBoard"
+        <EditText
+            android:id="@+id/DiscussionBoardTitle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:onClick="createNewDiscussionBoard"
-            android:text="+ Create "
-            android:visibility="invisible"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginTop="4dp"
+            android:ems="10"
+            android:hint="Title"
+            android:inputType="textPersonName"
+            app:layout_constraintBottom_toTopOf="@+id/DiscussionBoardText"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/discussionSelector"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="spread_inside" />
 
-        <ListView
-            android:id="@+id/discuListView"
-            android:layout_width="match_parent"
+        <EditText
+            android:id="@+id/DiscussionBoardText"
+            android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginTop="8dp"
-            app:layout_constraintBottom_toTopOf="@+id/createNewDiscussion"
+            android:ems="10"
+            android:hint="Topic"
+            android:inputType="textMultiLine|textPersonName"
+            android:textAlignment="textStart"
+            app:layout_constraintBottom_toTopOf="@+id/DiscussionBoardDueDate"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/createDiscussionBoard" />
+            app:layout_constraintTop_toBottomOf="@+id/DiscussionBoardTitle"
+            android:gravity="top"
+            />
+
+        <EditText
+            android:id="@+id/DiscussionBoardDueDate"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:ems="10"
+            android:hint="Due date"
+            android:inputType="date"
+            app:layout_constraintBottom_toTopOf="@+id/button3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/DiscussionBoardText" />
 
         <Button
-            android:id="@+id/createNewDiscussion"
-            style="@style/Widget.AppCompat.Button"
-            android:layout_width="match_parent"
+            android:id="@+id/button3"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="goToPostDiscussion"
-            android:text="+ Create New Discussion"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="8dp"
+            android:onClick="addDiscussionBoard"
+            android:text="+ Add Discussion Board"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.054"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/discuListView" />
-
+            app:layout_constraintTop_toBottomOf="@+id/DiscussionBoardDueDate" />
     </android.support.constraint.ConstraintLayout>
 
 </android.support.constraint.ConstraintLayout>
