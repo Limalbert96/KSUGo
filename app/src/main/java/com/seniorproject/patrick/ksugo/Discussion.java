@@ -7,26 +7,27 @@ import java.util.Date;
  */
 
 public class Discussion {
-    private int discussionID;
+    private String discussionID;
     private String creatorName;
     private String title;
     private String responseID;//ID of the discussion creator is responding to
     private String discussion;
     private Date timePosted;
+    private int responseCount=0;
 
     public Discussion() {
     }
-    public Discussion(int discussionID) {
+    public Discussion(String discussionID) {
         this.discussionID = discussionID;
     }
-    public Discussion(int discussionID, String creatorName, String title, String discussion, Date timePosted) {
+    public Discussion(String discussionID, String creatorName, String title, String discussion, Date timePosted) {
         this.discussionID = discussionID;
         this.creatorName = creatorName;
         this.title = title;
         this.discussion = discussion;
         this.timePosted=timePosted;
     }
-    public Discussion(int discussionID, String creatorName, String title, String responseID, String discussion,Date timePosted) {
+    public Discussion(String discussionID, String creatorName, String title, String responseID, String discussion,Date timePosted) {
 
         this.discussionID = discussionID;
         this.creatorName = creatorName;
@@ -42,10 +43,10 @@ public class Discussion {
     public void setDiscussion(String discussion) {
         this.discussion = discussion;
     }
-    public int getDiscussionID() {
+    public String getDiscussionID() {
         return discussionID;
     }
-    public void setDiscussionID(int discussionID) {
+    public void setDiscussionID(String discussionID) {
         this.discussionID = discussionID;
     }
     public String getCreatorName() {
@@ -65,6 +66,8 @@ public class Discussion {
     }
     public void setResponseID(String responseID) {
         this.responseID = responseID;
+        responseCount++;
+
     }
     public boolean isResponse(){
         if(responseID!=null){
@@ -72,4 +75,13 @@ public class Discussion {
         }
         return false;
     }
+    public int getResponseCount(){
+        return responseCount;}
+    public String toString(){
+        return title+":\n"+"Created by "+creatorName+"\n"+discussion;
+    }
+    public String responseToString(){
+        return discussion+"\n"+"Response by: "+creatorName;
+    }
+
 }

@@ -65,13 +65,18 @@ public class DiscussionBoard {
     }
 
     public void addDiscussion(String creatorName, String title, String discussion,Date timePosted){
-        Discussion discussion1=new Discussion(discussionCount,creatorName,title,discussion,timePosted);
+        Discussion discussion1=new Discussion(Integer.toString(discussionCount),creatorName,title,discussion,timePosted);
         discussionBoard.add(discussion1);
+        discussionCount++;
+    }
+    public void addDiscussion(Discussion discussion){
+        discussion.setDiscussionID(Integer.toString((discussionCount)));
+        discussionBoard.add(discussion);
         discussionCount++;
     }
 
     public void respond(String creatorName, String title, String responseID, String discussion,Date timePosted){
-        Discussion response=new Discussion(discussionCount, creatorName, title, responseID, discussion,timePosted);
+        Discussion response=new Discussion(Integer.toString(discussionCount), creatorName, title, responseID, discussion,timePosted);
         discussionBoard.add(response);
         discussionCount++;
     }
@@ -79,7 +84,7 @@ public class DiscussionBoard {
         Discussion discussion=discussionBoard.get(discussionID);
         discussion.setDiscussion("Edited:"+text);
     }
-    public void removeDiscussion(int discussionID){
+    public void removeDiscussion(String discussionID){
         for (Discussion discussion: discussionBoard){
             if(discussionID==discussion.getDiscussionID()){
                 discussionBoard.remove(discussion);
