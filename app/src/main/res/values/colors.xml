@@ -10,5 +10,7 @@
     <color name="white">#ffffff</color>
     <color name="twitterGray">#FF4B4A4A</color>
     <color name="Twitter">#1da1f2</color>
+    <color name="discussionBackground">#e7e7e7</color>
+
 
 </resources>
