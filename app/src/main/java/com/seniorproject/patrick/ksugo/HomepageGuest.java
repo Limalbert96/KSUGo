@@ -57,7 +57,7 @@ public class HomepageGuest extends AppCompatActivity {
         BOB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                startActivity(new Intent(HomepageGuest.this, BOB.class));
             }
         });
 
@@ -74,7 +74,7 @@ public class HomepageGuest extends AppCompatActivity {
         Events.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                startActivity(new Intent(HomepageGuest.this, Events.class));
             }
         });
 

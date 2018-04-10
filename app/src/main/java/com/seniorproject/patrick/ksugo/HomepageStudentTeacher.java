@@ -108,8 +108,6 @@ public class HomepageStudentTeacher extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(HomepageStudentTeacher.this, Events.class));
-
-
             }
         });
 
