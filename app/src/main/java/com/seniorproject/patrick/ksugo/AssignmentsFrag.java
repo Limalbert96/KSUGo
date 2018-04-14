@@ -1,10 +1,12 @@
 package com.seniorproject.patrick.ksugo;
 
 import android.content.Context;
+import android.content.Intent;
 import android.inputmethodservice.Keyboard;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,6 +39,9 @@ public class AssignmentsFrag extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    private Assignments currentAssignment;
+    public static Assignments selectedAssignment;
+
 
     private OnFragmentInteractionListener mListener;
 
@@ -110,38 +115,7 @@ public class AssignmentsFrag extends Fragment {
         void onFragmentInteraction(Uri uri);
     }
 
-    /*  public void addAssignment(View view){
 
-              ArrayList<String> assignmentInfo=new ArrayList<>();
-              ArrayList<Course> courses=D2L.courses1;
-
-
-              for (int i=0;i<courses.size();i++){
-                  String string;
-                  ArrayList<Assignments> assignmentsList=D2L.courses1.get(i).getAssignments();
-                  for(int j=0;j<assignmentsList.size();j++){
-                  if(j==0){
-                      assignmentInfo.add(assignmentsList.get(j).getDueDate());
-                      string=courses.get(i).getCourseName()+" | "+assignmentsList.get(j).toString();
-                      assignmentInfo.add(string);
-                  }
-                 else if(assignmentsList.get(j).getDueDate()==assignmentsList.get(j-1).getDueDate()){
-                      assignmentInfo.add(assignmentsList.get(j).toString());
-                  }
-                  else {
-                      assignmentInfo.add(assignmentsList.get(j).getDueDate());
-                      string=courses.get(i).getCourseName()+" | "+assignmentsList.get(j).toString();
-                      assignmentInfo.add(string);
-
-                  }
-                  }
-              }
-              ListAdapter adapter = new ArrayAdapter<String>(getActivity(), R.layout.assignment_layoutfile,R.id.textviewLayout, assignmentInfo);
-              ListView listView=(ListView) view.findViewById(R.id.assignmentsListView);
-
-              listView.setAdapter(adapter);
-
-      }*/
     public void addTableAssignments(View view) {
         ArrayList<Date> allDates = new ArrayList<>();
         TableLayout assignmentsTable = (TableLayout) view.findViewById(R.id.assignmentsTable);
@@ -149,30 +123,95 @@ public class AssignmentsFrag extends Fragment {
 
 
 
-        ArrayList<Course> courses = D2L.courses1;
-        for (int i = 0; i < courses.size(); i++) {
+        final ArrayList<Course> courses = D2L.courses1;
+        ArrayList<Assignments> allAssignments=new ArrayList<>();
+        for (Course course:courses){
+            for(Assignments assignment: course.getAssignments()){
+                allAssignments.add(assignment);
+            }
+        }
+        for(int i=0;i<allAssignments.size()-1;i++){
+            for(int j=1;j<allAssignments.size()-1;j++){
+                if(allAssignments.get(j).getDueDate().compareTo(allAssignments.get(i).getDueDate())>=1){
+                    Assignments temp=allAssignments.get(j);
+                    allAssignments.set(j,allAssignments.get(i));
+                    allAssignments.set(i,temp);
+                }
+            }
+        }
+        for(final Assignments assignment: allAssignments){
+            TableRow row = new TableRow(getActivity().getApplicationContext());
+            row.setBackgroundColor(getContext().getResources().getColor(R.color.rowBackground));
+
+            TextView courseName = new TextView(getActivity().getApplicationContext());
+            TextView assignmentName = new TextView(getActivity().getApplicationContext());
+            TextView timeDue = new TextView(getActivity().getApplicationContext());
+            TextView dueDate = new TextView(getActivity().getApplicationContext());
+
+            assignmentName.setTextColor(getResources().getColor(R.color.black));
+            timeDue.setTextColor(getResources().getColor(R.color.black));
+            dueDate.setTextColor(getResources().getColor(R.color.black));
+            timeDue.setTextColor(getResources().getColor(R.color.black));
+            courseName.setTextColor(getResources().getColor(R.color.black));
+
+            TableRow row2 = new TableRow(getActivity().getApplicationContext());
+            dueDate.setText(assignment.dateToString());
+            row.addView(dueDate);
+          //  allDates.add(courses.get(i).getAssignments().get(j).getDueDate());
+            currentAssignment=assignment;
+            courseName.setText(String.format("%s ", assignment.getCourseName()));
+            assignmentName.setText(Html.fromHtml("<u>"+assignment.getAssignmentName()+"</u>"));
+            timeDue.setText(assignment.getDueTime());
+            row2.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    selectedAssignment=assignment;
+                    startActivity(new Intent(getActivity(),AssignmentView.class));
+                }
+
+            });
+            row2.addView(courseName);
+            row2.addView(assignmentName);
+            row2.addView(timeDue);
+            assignmentsTable.addView(row);
+            assignmentsTable.addView(row2);
+        }
+       /* for (int i = 0; i < courses.size(); i++) {
             for (int j = 0; j < courses.get(i).getAssignments().size(); j++) {
                 TableRow row = new TableRow(getActivity().getApplicationContext());
 
                 row.setBackgroundColor(getContext().getResources().getColor(R.color.rowBackground));
+
                 TextView courseName = new TextView(getActivity().getApplicationContext());
                 TextView assignmentName = new TextView(getActivity().getApplicationContext());
                 TextView timeDue = new TextView(getActivity().getApplicationContext());
                 TextView dueDate = new TextView(getActivity().getApplicationContext());
+
                 assignmentName.setTextColor(getResources().getColor(R.color.black));
                 timeDue.setTextColor(getResources().getColor(R.color.black));
                 dueDate.setTextColor(getResources().getColor(R.color.black));
                 timeDue.setTextColor(getResources().getColor(R.color.black));
                 courseName.setTextColor(getResources().getColor(R.color.black));
-                // if(j==0){
+
                 TableRow row2 = new TableRow(getActivity().getApplicationContext());
                 dueDate.setText(courses.get(i).getAssignments().get(j).dateToString());
                 row.addView(dueDate);
-                allDates.add(courses.get(i).getAssignments().get(j).getDueDate());
 
-                courseName.setText(courses.get(i).getCourseName() + " ");
-                assignmentName.setText(courses.get(i).getAssignments().get(j).getAssignmentName() + " ");
+                allDates.add(courses.get(i).getAssignments().get(j).getDueDate());
+                currentAssignment=courses.get(i).getAssignments().get(j);
+                courseName.setText(String.format("%s ", courses.get(i).getCourseName()));
+                              assignmentName.setText(Html.fromHtml("<u>"+courses.get(i).getAssignments().get(j).getAssignmentName()+"</u>"));
                 timeDue.setText(courses.get(i).getAssignments().get(j).getDueTime());
+                final int finalI = i;
+                final int finalJ = j;
+                row2.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        selectedAssignment=courses.get(finalI).getAssignments().get(finalJ);
+                        startActivity(new Intent(getActivity(),AssignmentView.class));
+
+                    }
+                });
 
                 row2.addView(courseName);
                 row2.addView(assignmentName);
@@ -180,39 +219,8 @@ public class AssignmentsFrag extends Fragment {
                 assignmentsTable.addView(row);
                 assignmentsTable.addView(row2);
 
-
-              /*  else if(allDates.contains(courses.get(i).getAssignments().get(j-1).getDueDate())){
-                    courseName.setText(courses.get(i).getCourseName());
-                    assignmentName.setText(courses.get(i).getAssignments().get(j).getAssignmentName());
-                    timeDue.setText(courses.get(i).getAssignments().get(j).getDueTime());
-                    row.addView(courseName);
-                    row.addView(assignmentName);
-                    row.addView(timeDue);
-                    assignmentsTable.addView(row);
-
-                }
-                else {
-                    TableRow row2= new TableRow(getActivity().getApplicationContext());
-                    dueDate.setText(courses.get(i).getAssignments().get(j).dateToString());
-                    row.addView(dueDate);
-
-                    courseName.setText(courses.get(i).getCourseName());
-                    assignmentName.setText(courses.get(i).getAssignments().get(j).getAssignmentName());
-                    timeDue.setText(courses.get(i).getAssignments().get(j).getDueTime());
-
-                    row2.addView(courseName);
-                    row2.addView(assignmentName);
-                    row2.addView(timeDue);
-
-                    assignmentsTable.addView(row);
-                    assignmentsTable.addView(row2);
-
-
-                }*/
-
-
             }
-        }
+        }*/
     }
 }
 

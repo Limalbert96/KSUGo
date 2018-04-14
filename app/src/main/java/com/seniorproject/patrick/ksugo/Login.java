@@ -5,13 +5,25 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Switch;
 import android.widget.TextView;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintStream;
+import java.net.Socket;
+import java.net.UnknownHostException;
 import java.util.ArrayList;
+import java.util.concurrent.Executors;
 
 public class Login extends AppCompatActivity {
 
@@ -25,6 +37,7 @@ public class Login extends AppCompatActivity {
     private SharedPreferences.Editor loginEdit;
     public static ArrayList<MemberKSU>membersKSU=new ArrayList<>();
     public static MemberKSU member;
+    private JSONArray jsonArray=new JSONArray();
 
     private boolean saveLogin;
 
@@ -33,8 +46,14 @@ public class Login extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        membersKSU.add(new MemberKSU("phileri1","1234",false,"Patrick Hilerio"));
-        membersKSU.add(new MemberKSU("alim5","0000",true,"Albert Lim"));
+        Executors.newSingleThreadExecutor().submit(new Runnable() {
+            @Override
+            public void run() {
+                connect();
+            }
+        });
+//        membersKSU.add(new MemberKSU("phileri1","1234",false,"Patrick Hilerio"));
+  //      membersKSU.add(new MemberKSU("alim5","0000",true,"Albert Lim"));
         ksuID = (EditText) findViewById(R.id.userID);
         loginpassword = (EditText) findViewById(R.id.passwordField);
         remember = (Switch) findViewById(R.id.swLoginRem);
@@ -55,7 +74,11 @@ public class Login extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                validate(ksuID.getText().toString(), loginpassword.getText().toString());
+                try {
+                    validate(ksuID.getText().toString(), loginpassword.getText().toString());
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
         });
 
@@ -69,14 +92,44 @@ public class Login extends AppCompatActivity {
                 Intent intent = new Intent(Login.this, HomepageGuest.class);
                 startActivity(intent);
             }
-        });
-    }
+        });}
 
 
-    private void validate(String user, String password) {
+
+    private void validate(String user, String password) throws JSONException {
 
         boolean isMember=false;
-        for(MemberKSU member:membersKSU){
+        for(int i=0;i<jsonArray.length();i++){
+            JSONObject jsonObject= jsonArray.getJSONObject(i);
+            if(user.equals(jsonObject.getString("ksu id"))&& password.equals(jsonObject.getString("password"))){
+                if (remember.isChecked()) {
+                    loginEdit.putBoolean("saveLogin", true);
+                    loginEdit.putString("username", user);
+                    loginEdit.putString("password", password);
+                    loginEdit.commit();
+                } else {
+                    loginEdit.clear();
+                    loginEdit.commit();
+                    ksuID.setText("");
+                    loginpassword.setText("");
+                }
+                String userName=jsonObject.getString("ksu id");
+                String ksuPassword=jsonObject.getString("password");
+                String isStudent=jsonObject.getString("is student");
+                String name=jsonObject.getString("first name")+" "+jsonObject.getString("last name");
+                MemberKSU memberKSU=new MemberKSU(userName,ksuPassword,Boolean.parseBoolean(isStudent),name);
+
+                Intent intent = new Intent(Login.this, HomepageStudentTeacher.class);
+                isMember=true;
+                startActivity(intent);
+
+                Login.member=memberKSU;
+            }
+        }
+        if(isMember==false) {
+            incorrectLogin.setVisibility(View.VISIBLE);
+        }
+     /*   for(MemberKSU member:membersKSU){
         if (user.equals(member.getUsername()) && password.equals(member.getPassword())) {
             if (remember.isChecked()) {
                 loginEdit.putBoolean("saveLogin", true);
@@ -96,7 +149,44 @@ public class Login extends AppCompatActivity {
         }
         } if(isMember==false) {
             incorrectLogin.setVisibility(View.VISIBLE);
+        }*/
+    }
+    public void connect(){
+        String host = "13.59.236.94:3000/api/users";
+        String ip = "13.59.236.94";
+        int port = 3000;
+        String path = "/api/users";
+        Socket socket= new Socket();
+        Thread thread=new Thread();
+        try {
+
+            socket= new Socket(ip,port);
+            PrintStream out=new PrintStream(socket.getOutputStream());
+            BufferedReader in=new BufferedReader(new InputStreamReader(socket.getInputStream()));
+            out.println("GET " + path + " HTTP/1.0");
+            out.println();
+            out.flush();
+            String line;
+            String response="";
+            String json="";
+            while ((line = in.readLine()) != null){
+                response+=line;
+            }
+            for(int i=0;i<response.length();i++){
+                if(response.charAt(i)=='{'){
+                    json=response.substring(i);
+                    i=response.length()+1;
+                }
+            }
+            JSONObject jsonObject=new JSONObject(json);
+            jsonArray= new JSONArray(jsonObject.getString("Users"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
         }
+
+
     }
 
 }

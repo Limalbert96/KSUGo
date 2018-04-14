@@ -14,6 +14,8 @@ public class Assignments {
     private Date dueDate;
     private String assignmentName;
     private String dueTime;
+    private String assignmentInformation;
+    private String courseName;
 
 
 
@@ -25,6 +27,20 @@ public class Assignments {
         this.dueTime=dueTime;
     }
 
+    public Assignments(Date dueDate, String assignmentName, String dueTime, String courseName) {
+        this.dueDate = dueDate;
+        this.assignmentName = assignmentName;
+        this.dueTime = dueTime;
+        this.courseName = courseName;
+    }
+
+    public String getCourseName() {
+        return courseName;
+    }
+
+    public void setCourseName(String courseName) {
+        this.courseName = courseName;
+    }
 
     public Date getDueDate() {
         return dueDate;
@@ -51,6 +67,14 @@ public class Assignments {
     public String dateToString(){
         SimpleDateFormat dateFormat=new SimpleDateFormat("E, MMMM dd");
         return  dateFormat.format(dueDate);
+    }
+
+    public String getAssignmentInformation() {
+        return assignmentInformation;
+    }
+
+    public void setAssignmentInformation(String assignmentInformation) {
+        this.assignmentInformation = assignmentInformation;
     }
 
     public String toString(){
