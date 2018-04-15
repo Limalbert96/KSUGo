@@ -104,7 +104,7 @@ public class NewsFeed extends AppCompatActivity {
                             public void run() {
                                 ListView listView = (ListView) findViewById(R.id.listView3);
                                 try {
-                                    listView.setAdapter(new ArrayAdapter<String>(getApplicationContext(), R.layout.assignment_layoutfile,R.id.twitterText, tweets));
+                                    listView.setAdapter(new ArrayAdapter<String>(getApplicationContext(), R.layout.assignment_layoutfile, R.id.twitterText, tweets));
                                     findViewById(R.id.loadingPanel).setVisibility(View.GONE);
 
                                 } catch (Exception e) {

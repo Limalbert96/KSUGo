@@ -54,13 +54,14 @@ public class CourseAssignments extends AppCompatActivity {
                 timeDue.setTextColor(getResources().getColor(R.color.black));
                 dueDate.setTextColor(getResources().getColor(R.color.black));
                 timeDue.setTextColor(getResources().getColor(R.color.black));
+
                 if(j==0){
                     TableRow row2= new TableRow(getApplicationContext());
                     dueDate.setText(selectedCourse.getAssignments().get(j).dateToString()
                     );
                     row.addView(dueDate);
 
-                    assignmentName.setText(selectedCourse.getAssignments().get(j).getAssignmentName()+" ");
+                    assignmentName.setText(selectedCourse.getAssignments().get(j).getAssignmentName()+"   ");
                     timeDue.setText(selectedCourse.getAssignments().get(j).getDueTime());
 
                     row2.addView(assignmentName);
@@ -69,6 +70,7 @@ public class CourseAssignments extends AppCompatActivity {
                     assignmentsTable.addView(row2);
 
                 }
+
                 else if(selectedCourse.getAssignments().get(j).getDueDate()==selectedCourse.getAssignments().get(j-1).getDueDate()){
                     assignmentName.setText(selectedCourse.getAssignments().get(j).getAssignmentName()+" | ");
                     timeDue.setText(selectedCourse.getAssignments().get(j).getDueTime());
