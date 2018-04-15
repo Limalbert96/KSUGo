@@ -65,7 +65,7 @@ public class HomepageGuest extends AppCompatActivity {
         InteractiveMap.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+            startActivity(new Intent(HomepageGuest.this, InteractiveMap.class));
             }
         });
 

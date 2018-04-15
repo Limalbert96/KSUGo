@@ -98,7 +98,7 @@ public class HomepageStudentTeacher extends AppCompatActivity {
         InteractiveMap.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                startActivity(new Intent(HomepageStudentTeacher.this, InteractiveMap.class));
             }
         }); //Need User Type
 
