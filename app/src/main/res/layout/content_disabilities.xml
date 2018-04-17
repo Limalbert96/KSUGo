@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.seniorproject.patrick.ksugo.Disabilities"
+    tools:showIn="@layout/activity_disabilities">
+
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="344dp"
+        android:layout_height="150dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginStart="32dp"
+        app:layout_constraintBottom_toTopOf="@+id/accommodate"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.049"
+        app:srcCompat="@drawable/ksu_logo" />
+
+    <ImageButton
+        android:id="@+id/accommodate"
+        android:layout_width="114dp"
+        android:layout_height="108dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="8dp"
+        android:background="@android:color/transparent"
+        android:scaleType="fitCenter"
+        android:text="Accommodate"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/fab_margin"
+        android:textStyle="bold"
+        app:srcCompat="@drawable/accom_logo"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/amac"
+        app:layout_constraintStart_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/able"
+        app:layout_constraintVertical_bias="0.333"
+        tools:layout_editor_absoluteX="44dp" />
+
+    <ImageButton
+        android:id="@+id/able"
+        android:layout_width="114dp"
+        android:layout_height="108dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="8dp"
+        android:background="@android:color/transparent"
+        android:scaleType="fitCenter"
+        android:text="Accommodate"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/fab_margin"
+        android:textStyle="bold"
+        app:srcCompat="@drawable/able"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/disabilitiesMain"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.558" />
+
+    <ImageButton
+        android:id="@+id/disabilitiesMain"
+        android:layout_width="114dp"
+        android:layout_height="108dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:background="@android:color/transparent"
+        android:scaleType="fitCenter"
+        android:text="KSU HOME"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/fab_margin"
+        android:textStyle="bold"
+        app:srcCompat="@drawable/sds"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/accommodate"
+        app:layout_constraintTop_toBottomOf="@+id/amac" />
+
+    <ImageButton
+        android:id="@+id/amac"
+        android:layout_width="114dp"
+        android:layout_height="108dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:background="@android:color/holo_blue_light"
+        android:scaleType="fitCenter"
+        android:text="KSU HOME"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/fab_margin"
+        android:textStyle="bold"
+        app:srcCompat="@drawable/amac"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/accommodate"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.56" />
+
+
+</android.support.constraint.ConstraintLayout>

@@ -38,6 +38,7 @@
         <activity android:name=".OwlLife"/>
         <activity android:name=".BOB"/>
         <activity android:name=".Events"/>
+        <activity android:name=".Disabilities"/>
         <activity android:name=".AssignmentView"/>
         <activity android:name=".DiscussionView"/>
         <!--

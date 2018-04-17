@@ -15,6 +15,7 @@ public class HomepageGuest extends AppCompatActivity {
     private ImageButton News;
     private ImageButton Events;
     private ImageButton Emergency;
+    private ImageButton Disabilities;
 
 
     @Override
@@ -28,6 +29,7 @@ public class HomepageGuest extends AppCompatActivity {
         News = (ImageButton) findViewById(R.id.NewsButton);
         Events = (ImageButton) findViewById(R.id.EventsButton);
         Emergency = (ImageButton) findViewById(R.id.emergencyButton);
+        Disabilities = (ImageButton) findViewById(R.id.DisabilitiesButton);
 
         // Emergency
         Emergency.setOnClickListener(new View.OnClickListener() {
@@ -69,6 +71,13 @@ public class HomepageGuest extends AppCompatActivity {
             }
         });
 
+        // Disabilities
+        Disabilities.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(HomepageGuest.this, Disabilities.class));
+            }
+        });
 
         //Events
         Events.setOnClickListener(new View.OnClickListener() {
