@@ -46,12 +46,12 @@ public class Login extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        Executors.newSingleThreadExecutor().submit(new Runnable() {
+        /*Executors.newSingleThreadExecutor().submit(new Runnable() {
             @Override
             public void run() {
-                connect();
+                //connect();
             }
-        });
+        });*/
 //        membersKSU.add(new MemberKSU("phileri1","1234",false,"Patrick Hilerio"));
   //      membersKSU.add(new MemberKSU("alim5","0000",true,"Albert Lim"));
         ksuID = (EditText) findViewById(R.id.userID);
@@ -74,11 +74,22 @@ public class Login extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                try {
-                    validate(ksuID.getText().toString(), loginpassword.getText().toString());
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
+                    new Thread(new Runnable(){
+                        @Override
+                        public void run() {
+                            connect(ksuID.getText().toString(), loginpassword.getText().toString());
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    try {
+                                        validate();
+                                    } catch (JSONException e) {
+                                        e.printStackTrace();
+                                    }
+                                }
+                            });
+                        }
+                    }).start();
             }
         });
 
@@ -96,37 +107,34 @@ public class Login extends AppCompatActivity {
 
 
 
-    private void validate(String user, String password) throws JSONException {
-
-        boolean isMember=false;
-        for(int i=0;i<jsonArray.length();i++){
-            JSONObject jsonObject= jsonArray.getJSONObject(i);
-            if(user.equals(jsonObject.getString("ksu id"))&& password.equals(jsonObject.getString("password"))){
-                if (remember.isChecked()) {
-                    loginEdit.putBoolean("saveLogin", true);
-                    loginEdit.putString("username", user);
-                    loginEdit.putString("password", password);
-                    loginEdit.commit();
-                } else {
-                    loginEdit.clear();
-                    loginEdit.commit();
-                    ksuID.setText("");
-                    loginpassword.setText("");
-                }
-                String userName=jsonObject.getString("ksu id");
-                String ksuPassword=jsonObject.getString("password");
-                String isStudent=jsonObject.getString("is student");
-                String name=jsonObject.getString("first name")+" "+jsonObject.getString("last name");
-                MemberKSU memberKSU=new MemberKSU(userName,ksuPassword,Boolean.parseBoolean(isStudent),name);
-
-                Intent intent = new Intent(Login.this, HomepageStudentTeacher.class);
-                isMember=true;
-                startActivity(intent);
-
-                Login.member=memberKSU;
+    private void validate() throws JSONException {
+        if(jsonArray.length() != 0){
+            JSONObject jsonObject= jsonArray.getJSONObject(0);
+            if (remember.isChecked()) {
+                loginEdit.putBoolean("saveLogin", true);
+                loginEdit.putString("username", ksuID.getText().toString());
+                loginEdit.putString("password", loginpassword.getText().toString());
+                loginEdit.commit();
+            } else {
+                loginEdit.clear();
+                loginEdit.commit();
+                ksuID.setText("");
+                loginpassword.setText("");
             }
-        }
-        if(isMember==false) {
+            //String userName=jsonObject.getString("ksu id");
+            String userName = ksuID.getText().toString();
+            String ksuPassword = loginpassword.getText().toString();
+            //String ksuPassword=jsonObject.getString("password");
+            String isStudent=jsonObject.getString("is student");
+            String name=jsonObject.getString("first name")+" "+jsonObject.getString("last name");
+            MemberKSU memberKSU=new MemberKSU(userName,ksuPassword,Boolean.parseBoolean(isStudent),name);
+
+            Intent intent = new Intent(Login.this, HomepageStudentTeacher.class);
+            startActivity(intent);
+
+            Login.member=memberKSU;
+            }
+        else {
             incorrectLogin.setVisibility(View.VISIBLE);
         }
      /*   for(MemberKSU member:membersKSU){
@@ -151,11 +159,11 @@ public class Login extends AppCompatActivity {
             incorrectLogin.setVisibility(View.VISIBLE);
         }*/
     }
-    public void connect(){
+    public void connect(String user, String pass){
         String host = "13.59.236.94:3000/api/users";
         String ip = "13.59.236.94";
         int port = 3000;
-        String path = "/api/users";
+        String path = "/api/users/" + user + "&" + pass;
         Socket socket= new Socket();
         Thread thread=new Thread();
         try {
