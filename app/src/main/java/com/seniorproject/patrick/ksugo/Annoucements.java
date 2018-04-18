@@ -1,6 +1,7 @@
 package com.seniorproject.patrick.ksugo;
 
-import java.sql.Date;
+
+import java.util.Date;
 
 /**
  * Created by patri on 2/14/2018.

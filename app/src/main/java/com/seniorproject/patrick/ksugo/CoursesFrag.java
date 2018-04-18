@@ -119,7 +119,7 @@ public class CoursesFrag extends Fragment {
         ArrayList<String> courses =  new ArrayList<String>();
 
         for(int i=0;i<D2L.courses1.size();i++){
-            courses.add(D2L.courses1.get(i).getCourseName());
+            courses.add(D2L.courses1.get(i).getCourseID());
         }
             ArrayAdapter<String> adapter = new ArrayAdapter<String>(
                     getActivity(), android.R.layout.simple_list_item_1, courses);

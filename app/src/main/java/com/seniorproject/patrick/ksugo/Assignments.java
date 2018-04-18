@@ -16,6 +16,7 @@ public class Assignments {
     private String dueTime;
     private String assignmentInformation;
     private String courseName;
+    private String courseSection;
 
 
 
@@ -32,6 +33,32 @@ public class Assignments {
         this.assignmentName = assignmentName;
         this.dueTime = dueTime;
         this.courseName = courseName;
+    }
+
+    public Assignments(Date dueDate, String assignmentName, String dueTime, String assignmentInformation, String courseName, String courseSection) {
+        this.dueDate = dueDate;
+        this.assignmentName = assignmentName;
+        this.dueTime = dueTime;
+        this.assignmentInformation = assignmentInformation;
+        this.courseName = courseName;
+        this.courseSection = courseSection;
+    }
+
+    public String getCourseSection() {
+        return courseSection;
+    }
+
+    public void setCourseSection(String courseSection) {
+        this.courseSection = courseSection;
+    }
+
+    public Assignments(Date dueDate, String assignmentName, String dueTime, String courseName, String courseSection) {
+
+        this.dueDate = dueDate;
+        this.assignmentName = assignmentName;
+        this.dueTime = dueTime;
+        this.courseName = courseName;
+        this.courseSection = courseSection;
     }
 
     public String getCourseName() {

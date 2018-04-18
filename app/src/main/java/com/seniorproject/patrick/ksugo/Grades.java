@@ -7,15 +7,27 @@ package com.seniorproject.patrick.ksugo;
 public class Grades {
     private double grade;
     private String assignment;
-    private int studentID;
+    private String studentID;
     private String courseID;
     private String courseSectionNumber;
-    public Grades(int grade, String assignment, int studentID, String courseID){
+    public Grades(){
+
+    }
+
+  /*  public Grades(int grade, String assignment, String studentID, String courseID){
         this.grade=grade;
         this.assignment=assignment;
         this.studentID=studentID;
         this.courseID=courseID;
 
+    }*/
+
+    public Grades(double grade, String assignment, String studentID, String courseID, String courseSectionNumber) {
+        this.grade = grade;
+        this.assignment = assignment;
+        this.studentID = studentID;
+        this.courseID = courseID;
+        this.courseSectionNumber = courseSectionNumber;
     }
 
     public String getCourseID() {
@@ -34,18 +46,18 @@ public class Grades {
         this.courseSectionNumber = courseSectionNumber;
     }
 
-    public Grades(double grade, String assignment, int studentID, String courseID) {
+    public Grades(double grade, String assignment, String studentID, String courseID) {
         this.grade = grade;
         this.assignment = assignment;
         this.studentID = studentID;
         this.courseID=courseID;
     }
 
-    public int getStudentID() {
+    public String getStudentID() {
         return studentID;
     }
 
-    public void setStudentID(int studentID) {
+    public void setStudentID(String studentID) {
         this.studentID = studentID;
     }
 
@@ -64,4 +76,5 @@ public class Grades {
     public void setAssignment(String assignment) {
         this.assignment = assignment;
     }
+
 }
