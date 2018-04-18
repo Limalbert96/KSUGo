@@ -20,7 +20,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
-import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
@@ -36,34 +35,25 @@ public class Login extends AppCompatActivity {
     private TextView incorrectLogin;
     private SharedPreferences loginPref;
     private SharedPreferences.Editor loginEdit;
-    //   public static ArrayList<MemberKSU>membersKSU=new ArrayList<>();
+    public static ArrayList<MemberKSU>membersKSU=new ArrayList<>();
     public static MemberKSU member;
-    private JSONObject jsonObject;
-    private JSONArray jsonArray = new JSONArray();
-    public static KSUSocket serverSocket;
-    private boolean saveLogin;
+    private JSONArray jsonArray=new JSONArray();
 
+    private boolean saveLogin;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        Executors.newSingleThreadExecutor().submit(new Runnable() {
+        /*Executors.newSingleThreadExecutor().submit(new Runnable() {
             @Override
             public void run() {
-                try {
-                    connect();
-                    // retriveData();
-                    //  serverSocket.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                //connect();
             }
-        });
-
-//      membersKSU.add(new MemberKSU("phileri1","1234",false,"Patrick Hilerio"));
-        //    membersKSU.add(new MemberKSU("alim5","0000",true,"Albert Lim"));
+        });*/
+//        membersKSU.add(new MemberKSU("phileri1","1234",false,"Patrick Hilerio"));
+        //      membersKSU.add(new MemberKSU("alim5","0000",true,"Albert Lim"));
         ksuID = (EditText) findViewById(R.id.userID);
         loginpassword = (EditText) findViewById(R.id.passwordField);
         remember = (Switch) findViewById(R.id.swLoginRem);
@@ -84,18 +74,22 @@ public class Login extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Executors.newSingleThreadExecutor().submit(new Runnable() {
+                new Thread(new Runnable(){
                     @Override
                     public void run() {
-                        try {
-                            retriveData(ksuID.getText().toString(), loginpassword.getText().toString());
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
+                        connect(ksuID.getText().toString(), loginpassword.getText().toString());
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                try {
+                                    validate();
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        });
                     }
-                });
+                }).start();
             }
         });
 
@@ -109,16 +103,43 @@ public class Login extends AppCompatActivity {
                 Intent intent = new Intent(Login.this, HomepageGuest.class);
                 startActivity(intent);
             }
-        });
-    }
+        });}
 
 
-    private void validate(String user, String password) throws JSONException {
-        boolean isMember = false;
 
-        if (user.equals(jsonObject.getString("ksu id"))) {
+    private void validate() throws JSONException {
+        if(jsonArray.length() != 0){
+            JSONObject jsonObject= jsonArray.getJSONObject(0);
             incorrectLogin.setVisibility(View.INVISIBLE);
+            if (remember.isChecked()) {
+                loginEdit.putBoolean("saveLogin", true);
+                loginEdit.putString("username", ksuID.getText().toString());
+                loginEdit.putString("password", loginpassword.getText().toString());
+                loginEdit.commit();
+            } else {
+                loginEdit.clear();
+                loginEdit.commit();
+                ksuID.setText("");
+                loginpassword.setText("");
+            }
+            //String userName=jsonObject.getString("ksu id");
+            String userName = ksuID.getText().toString();
+            String ksuPassword = loginpassword.getText().toString();
+            //String ksuPassword=jsonObject.getString("password");
+            String isStudent=jsonObject.getString("is student");
+            String name=jsonObject.getString("first name")+" "+jsonObject.getString("last name");
+            MemberKSU memberKSU=new MemberKSU(userName,ksuPassword,Boolean.parseBoolean(isStudent),name);
 
+            Intent intent = new Intent(Login.this, HomepageStudentTeacher.class);
+            startActivity(intent);
+
+            Login.member=memberKSU;
+        }
+        else {
+            incorrectLogin.setVisibility(View.VISIBLE);
+        }
+     /*   for(MemberKSU member:membersKSU){
+        if (user.equals(member.getUsername()) && password.equals(member.getPassword())) {
             if (remember.isChecked()) {
                 loginEdit.putBoolean("saveLogin", true);
                 loginEdit.putString("username", user);
@@ -130,38 +151,51 @@ public class Login extends AppCompatActivity {
                 ksuID.setText("");
                 loginpassword.setText("");
             }
-            String userName = jsonObject.getString("ksu id");
-            String ksuPassword = password;
-            String isStudent = jsonObject.getString("is student");
-            String name = jsonObject.getString("first name") + " " + jsonObject.getString("last name");
-            MemberKSU memberKSU = new MemberKSU(userName, ksuPassword, Boolean.parseBoolean(isStudent), name);
-           //
-            // startService();
             Intent intent = new Intent(Login.this, HomepageStudentTeacher.class);
-            isMember = true;
+            isMember=true;
             startActivity(intent);
-
-            Login.member = memberKSU;
+            Login.member=member;
         }
-
-        if (!isMember) {
+        } if(isMember==false) {
             incorrectLogin.setVisibility(View.VISIBLE);
-        }
+        }*/
     }
-
-    public void connect() throws IOException {
-        serverSocket = new KSUSocket();
-    }
-
-    public void retriveData(String user, String pass) throws IOException, JSONException {
+    public void connect(String user, String pass){
+        String host = "13.59.236.94:3000/api/users";
+        String ip = "13.59.236.94";
+        int port = 3000;
         String path = "/api/users/" + user + "&" + pass;
-        serverSocket.readServer(path);
-        JSONObject jsonObjectResponse = serverSocket.getJsonObject();
-        jsonArray = new JSONArray(jsonObjectResponse.getString("Users"));
-        jsonObject=jsonArray.getJSONObject(0);
-        validate(user, pass);
-        // jsonArray= new JSONArray(jsonObject.getString("Users"));
-    }
+        Socket socket= new Socket();
+        Thread thread=new Thread();
+        try {
 
+            socket= new Socket(ip,port);
+            PrintStream out=new PrintStream(socket.getOutputStream());
+            BufferedReader in=new BufferedReader(new InputStreamReader(socket.getInputStream()));
+            out.println("GET " + path + " HTTP/1.0");
+            out.println();
+            out.flush();
+            String line;
+            String response="";
+            String json="";
+            while ((line = in.readLine()) != null){
+                response+=line;
+            }
+            for(int i=0;i<response.length();i++){
+                if(response.charAt(i)=='{'){
+                    json=response.substring(i);
+                    i=response.length()+1;
+                }
+            }
+            JSONObject jsonObject=new JSONObject(json);
+            jsonArray= new JSONArray(jsonObject.getString("Users"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+
+    }
 
 }
