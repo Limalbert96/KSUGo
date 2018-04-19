@@ -54,6 +54,8 @@ public class Events extends AppCompatActivity{
         jsonArray=HomepageStudentTeacher.eventsJSONArray;
         TextView title=(TextView) findViewById(R.id.eventText);
         title.setText(String.format("Events"));
+
+        //insertEvents();
         try {
             getData();
         } catch (JSONException e) {
@@ -78,20 +80,46 @@ public class Events extends AppCompatActivity{
 
     }
 
-  /*  public void retrieveData() throws IOException, JSONException {
-        String path="/api/events";
-        socket.readServer(path);
-        jsonObject =socket.getJsonObject();
-        jsonArray= new JSONArray(jsonObject.getString("Events"));
-        TextView textView=(TextView)findViewById(R.id.eventText);
-        JSONObject jsonOBject2=jsonArray.getJSONObject(0);
-        textView.setText(jsonOBject2.getString("event name"));
-       // getData();
-        //addEventTable();
+    /*
+    // set data manually
+    public void insertEvents() {
+        Event event1 = new Event();
+        Event event2 = new Event();
+
+        event1.setEventName("All Majors Career Fair");
+        event1.setEventDescription("Companies are looking for interns and full time employment across all majors.");
+        event1.setEventBuilding("Gymnasium");
+        event1.setEventRoom("Gym");
+        event1.setEventDate(new Date(2018, 5, 15));
+        event1.setEventTime(new Time(12,0,0));
+
+        event2.setEventName("STEM Career Fair");
+        event2.setEventDescription("Companies are looking for interns and full time employment across all majors.");
+        event2.setEventBuilding("Gymnasium");
+        event2.setEventRoom("Gym");
+        event2.setEventDate(new Date(2018, 5, 22));
+        event2.setEventTime(new Time(12,0,0));
+
+
+        // push all data to the arraylist
+        for (Event event : allEvents) {
+            allEvents.add(event);
+        }
+
+        allEvents.add(event1);
+        allEvents.add(event2);
+
+        //to sort event by date
+        Collections.sort(allEvents, new Comparator<Event>() {
+            @Override
+            public int compare(Event event1, Event event2) {
+                return event1.getEventDate().compareTo(event2.getEventDate());
+            }
+        });
     }
-    public void connect() throws IOException {
-        socket=new KSUSocket();
-    }*/
+
+    */
+
 
     public void getData()throws JSONException {
         for(int i=0;i<jsonArray.length();i++) {
@@ -101,33 +129,45 @@ public class Events extends AppCompatActivity{
             String description = jsonObject.getString("description");
             String building = jsonObject.getString("building name");
             String room = jsonObject.getString("room number");
-            //String date = jsonObject.getString("date");
-            //String time = jsonObject.getString("time");
+            String time = jsonObject.getString("time");
+
+            Date date = null;
+            //Date time = null;
+
 
             try {
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-                Date date = sdf.parse(jsonObject.getString("date"));
+                date = sdf.parse(jsonObject.getString("date"));
             } catch (java.text.ParseException e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
             }
 
+            /* if time is Date
             try {
                 SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
-                Date time = sdf.parse(jsonObject.getString("time"));
+                time = sdf.parse(jsonObject.getString("time"));
             } catch (java.text.ParseException e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
-            }
+            }*/
 
             event.setEventName(name);
             event.setEventDescription(description);
             event.setEventBuilding(building);
             event.setEventRoom(room);
-            //event.setEventDate(date);
-            //event.setEventTime(time);
+            event.setEventDate(date);
+            event.setEventTime(time);
             allEvents.add(event);
         }
+
+        //to sort event by date
+        Collections.sort(allEvents, new Comparator<Event>() {
+            @Override
+            public int compare(Event event1, Event event2) {
+                return event1.getEventDate().compareTo(event2.getEventDate());
+            }
+        });
 
 
     }
@@ -143,27 +183,37 @@ public class Events extends AppCompatActivity{
             TextView eventName = new TextView(getApplicationContext());
             TextView eventDescription = new TextView(getApplicationContext());
             TextView eventBuilding = new TextView(getApplicationContext());
-            //TextView eventRoom=new TextView(getApplicationContext());
-            //TextView eventDate=new TextView(getApplicationContext());
-            //TextView eventTime=new TextView(getApplicationContext());
+            TextView eventRoom=new TextView(getApplicationContext());
+            TextView eventDate=new TextView(getApplicationContext());
+            TextView eventTime=new TextView(getApplicationContext());
 
             eventName.setTypeface(Typeface.DEFAULT_BOLD);
             eventName.setTextColor(getResources().getColor(R.color.black));
             eventDescription.setTextColor(getResources().getColor(R.color.black));
             eventBuilding.setTextColor(getResources().getColor(R.color.black));
-            //eventRoom.setTextColor(getResources().getColor(R.color.black));
-            //eventDate.setTextColor(getResources().getColor(R.color.black));
-            //eventTime.setTextColor(getResources().getColor(R.color.black));
+            eventRoom.setTextColor(getResources().getColor(R.color.black));
+            eventDate.setTextColor(getResources().getColor(R.color.black));
+            eventTime.setTextColor(getResources().getColor(R.color.black));
 
             // need to add building, desc, room,
             TableRow row2 = new TableRow(getApplicationContext());
             TableRow row3 = new TableRow(getApplicationContext());
             TableRow row4 = new TableRow(getApplicationContext());
 
-            //eventDate.setText(allEvents.get(j).dateToString());
+            eventDate.setText(allEvents.get(j).dateToString());
+            row.addView(eventDate);
+
+            // if time is Date
             //eventTime.setText("Time: " + allEvents.get(j).timeToString());
-            //row.addView(eventDate);
             //row.addView(eventTime);
+
+            // if date is String
+            //eventDate.setText(allEvents.get(j).getEventDate());
+            //row.addView(eventDate);
+
+            eventTime.setText(allEvents.get(j).getEventTime());
+            row.addView(eventTime);
+
 
             eventName.setText(allEvents.get(j).getEventName() + "    ");
             row2.addView(eventName);
@@ -172,11 +222,10 @@ public class Events extends AppCompatActivity{
             row3.addView(eventDescription);
 
             // building and Room data are included in eventBuilding
-            eventBuilding.setText(allEvents.get(j).getEventBuilding());
-            //+ ", Room: " + allEvents.get(j).getEventRoom()+"\n");
+            eventBuilding.setText(allEvents.get(j).getEventBuilding() + ", Room: " + allEvents.get(j).getEventRoom()+"\n");
             row4.addView(eventBuilding);
 
-            //eventsTable.addView(row);
+            eventsTable.addView(row);
             eventsTable.addView(row2);
             eventsTable.addView(row3);
             eventsTable.addView(row4);

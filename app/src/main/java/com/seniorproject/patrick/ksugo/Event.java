@@ -17,7 +17,7 @@ public class Event {
     private String eventBuilding;
     private String eventRoom;
     private Date eventDate;
-    private Time eventTime;
+    private String eventTime;
 
     public Event(){}
     public Event(
@@ -25,15 +25,15 @@ public class Event {
             String eventDescription,
             String eventBuilding,
             String eventRoom,
-            Date dueDate,
-            Time dueTime) {
+            Date eventDate,
+            String eventTime) {
 
         this.eventName = eventName;
         this.eventDescription = eventDescription;
         this.eventBuilding = eventBuilding;
         this.eventRoom = eventRoom;
-        this.eventDate = dueDate;
-        this.eventDate = dueTime;
+        this.eventDate = eventDate;
+        this.eventTime = eventTime;
     }
 
     public String getEventName() {
@@ -76,16 +76,21 @@ public class Event {
         this.eventDate = eventDate;
     }
 
-    public Time getEventTime() {
+    public String getEventTime() {
         return eventTime;
     }
 
-    public void setEventTime(Time eventTime) {
+    public void setEventTime(String eventTime) {
         this.eventTime = eventTime;
     }
 
     public String dateToString(){
         SimpleDateFormat dateFormat=new SimpleDateFormat("E, MMMM dd");
+        return  dateFormat.format(eventDate);
+    }
+
+    public String timeToString(){
+        SimpleDateFormat dateFormat=new SimpleDateFormat("HH:mm:ss");
         return  dateFormat.format(eventDate);
     }
 
