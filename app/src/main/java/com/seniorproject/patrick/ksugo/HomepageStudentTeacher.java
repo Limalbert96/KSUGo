@@ -13,6 +13,7 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.concurrent.Executors;
@@ -36,8 +37,7 @@ public class HomepageStudentTeacher extends AppCompatActivity {
     public static ArrayList<Course> courses1 = new ArrayList<Course>();
     private String name;
     public static JSONObject eventsObject;
-    public static JSONArray eventsJSONArray;
-
+    public static JSONArray eventsJSONArray = new JSONArray();
 
 
     @Override
@@ -45,7 +45,7 @@ public class HomepageStudentTeacher extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_homepagestudentteacher);
         member = Login.member;
-        if(name==null||name!=member.getName()){
+        if (name == null || name != member.getName()) {
             courses1.clear();
             allGrades.clear();
         }
@@ -60,6 +60,8 @@ public class HomepageStudentTeacher extends AppCompatActivity {
                         addAssignements();
                         addAllGrades();
                         allEvents();
+                        addDiscussionBoards();
+                        addDiscussions();
                     } catch (IOException e) {
                         e.printStackTrace();
                     } catch (JSONException e) {
@@ -145,6 +147,8 @@ public class HomepageStudentTeacher extends AppCompatActivity {
         InteractiveMap.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                startActivity(new Intent(HomepageStudentTeacher.this, InteractiveMap.class));
+
 
             }
         }); //Need User Type
@@ -270,14 +274,95 @@ public class HomepageStudentTeacher extends AppCompatActivity {
 
 
     }
+
     public void allEvents() throws IOException, JSONException {
-        String path="events";
-        KSUSocket eventsSocket=new KSUSocket();
+        String path = "events";
+        KSUSocket eventsSocket = new KSUSocket();
         eventsSocket.createServer(path);
-        eventsObject=eventsSocket.getJsonObject();
-        eventsJSONArray=new JSONArray(eventsObject.getString("Events"));
+        eventsObject = eventsSocket.getJsonObject();
+        eventsJSONArray = new JSONArray(eventsObject.getString("Events"));
+    }
+
+    public void addDiscussionBoards() throws IOException, JSONException, ParseException {
+        for (Course course : courses1) {
+            String courseid = course.getCourseID();
+            String section = course.getCourseSectionNumber();
+            String path = "courses/" + courseid + "/section/" + section + "/discussionslist";
+            KSUSocket discussionSocketList = new KSUSocket();
+            discussionSocketList.createServer(path);
+            JSONObject discussionJObject = discussionSocketList.getJsonObject();
+            if (discussionJObject.has("Discussions list")) {
+                JSONArray discussionsListArray = new
+                        JSONArray(discussionJObject.getString
+                        ("Discussions list"));
+                for (int i = 0; i < discussionsListArray.length(); i++) {
+                    DiscussionBoard discussionBoard = new DiscussionBoard();
+                    JSONObject discussionBObject = discussionsListArray.getJSONObject(i);
+                    int discussionID = discussionBObject.getInt("iddiscussionslist");
+                    String topic = discussionBObject.getString("topic");
+                    discussionBoard.setTitle(topic);
+                    discussionBoard.setTopic(topic);
+                    discussionBoard.setDiscussionBoardID(discussionID);
+                    course.createDiscussionBoard(discussionBoard);
+                }
+            }
+        }
+    }
+
+    public void addDiscussions() throws IOException, JSONException {
+        //13.59.236.94:3000/api/discussionslist/:iddiscussionslist/discussions
+        for (Course course : HomepageStudentTeacher.courses1) {
+            for (DiscussionBoard discussionBoard : course.getDiscussionBoard()) {
+                String id = Integer.toString(discussionBoard.getDiscussionBoardID());
+                String dlPath = "discussionslist/" + id + "/discussions";
+                KSUSocket discussionResponseSocket = new KSUSocket();
+                discussionResponseSocket.createServer(dlPath);
+                JSONObject dlJsON = discussionResponseSocket.getJsonObject();
+                if (dlJsON.has("Discussions")) {
+                    JSONArray dlArray = new JSONArray(dlJsON.getString("Discussions"));
+                    for (int i = 0; i < dlArray.length(); i++) {
+                        JSONObject responses = dlArray.getJSONObject(i);
+                        String discussionid = responses.getString("discussionid");
+                        String subject = responses.getString("subject");
+                        String body = responses.getString("body");
+                        String creatorName = responses.getString("ksu id");
+                        String postTime = responses.getString("posttime");
+                        Discussion discussion = new Discussion();
+                        discussion.setDiscussionID(Integer.parseInt(discussionid));
+                        discussion.setDiscussion(body);
+                        discussion.setTitle(subject);
+                        discussion.setCreatorName(creatorName);
+                        Date date = new Date();
+                        discussion.setTimePosted(date);
+                        discussionBoard.addDiscussion(discussion);
+                        KSUSocket replySocket = new KSUSocket();
+                        String replyPath = "discussionslist/" + discussionBoard.getDiscussionBoardID() + "/discussions/" + discussionid;
+                        replySocket.createServer(replyPath);
+                        JSONObject replyObject = replySocket.getJsonObject();
+                        if (replyObject.has("Replies")) {
+                            JSONArray repliesArray = new JSONArray(replyObject.getString("Replies"));
+                            for (int j = 0; j < repliesArray.length(); j++) {
+                                JSONObject replyJSON = repliesArray.getJSONObject(j);
+                                String replyID = replyJSON.getString("iddiscussionreplies");
+                                String bodyReply = replyJSON.getString("body");
+                                String creatorNameReply = replyJSON.getString("ksu id");
+                                String postTimeReply = replyJSON.getString("posttime");
+                                Discussion reply = new Discussion();
+                                reply.setResponseID(replyID);
+                                reply.setDiscussion(bodyReply);
+                                reply.setCreatorName(creatorNameReply);
+                                reply.setTimePosted(new Date());
+                                reply.setDiscussionID(Integer.parseInt(discussionid));
+                                discussion.addReplies(reply);
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 }
+
 
 
 

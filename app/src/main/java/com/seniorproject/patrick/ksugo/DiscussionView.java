@@ -32,8 +32,8 @@ public class DiscussionView extends AppCompatActivity {
         discussions.add(discussion.toString());
         discussions.add("Responses:");
         for(Discussion discussion: discussionBoard.getDiscussionBoard()){
-            if(discussion.getResponseID()==this.discussion.getDiscussionID()){
-                discussions.add(discussion.responseToString());
+            for(Discussion discussion1:discussion.getReplies()){
+                discussions.add(discussion1.responseToString());
             }
         }
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.assignment_layoutfile, R.id.discussion, discussions);
@@ -54,7 +54,7 @@ public class DiscussionView extends AppCompatActivity {
                     Discussion response=new Discussion();
                     response.setDiscussion(responseText);
                     response.setCreatorName(D2L.member.getName());
-                    response.setResponseID(this.discussion.getDiscussionID());
+                    response.setResponseID(Integer.toString(this.discussion.getDiscussionID()));
                     if(discussionBoard.getTitle()==this.discussionBoard.getTitle()){
                         discussionBoard.addDiscussion(response);
                     }

@@ -17,6 +17,8 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.concurrent.Executors;
 
+import static com.seniorproject.patrick.ksugo.HomepageStudentTeacher.courses1;
+
 
 public class AssignmentView extends AppCompatActivity {
     private JSONObject jsonObject;
@@ -72,13 +74,32 @@ public class AssignmentView extends AppCompatActivity {
         //String content=socket.getJsonObject().getString("Announcements");
         //JSONArray array= new JSONArray(content);
         String content2="";
-       /* for(int i=0;i<Login.eventsJSONArray.length();i++){
-            JSONObject object=Login.eventsJSONArray.getJSONObject(i);
+        /*
+        for(int i = 0; i< courses1.size(); i++){
+            for(DiscussionBoard discussionBoard:courses1.get(i).getDiscussionBoard()){
+                //for (Discussion discussion:discussionBoard.getDiscussionBoard()){
+                    content2+=discussionBoard.getDiscussionBoardID();
+                  //  }
+            }
 
-            content2+=object.getString("event name")+" ";
 
         }*/
-       content2=HomepageStudentTeacher.eventsObject.getString("Events");
+        content2=Integer.toString(courses1.get(4).getDiscussionBoard().get(1).getDiscussionBoard().get(0).getDiscussionID());
+       /* for(Course course:HomepageStudentTeacher.courses1){
+        for (DiscussionBoard discussionBoard : course.getDiscussionBoard()) {
+            String id = Integer.toString(discussionBoard.getDiscussionBoardID());
+            String dlPath = "discussionslist/" + id + "/discussions";
+            KSUSocket discussionResponseSocket = new KSUSocket();
+            discussionResponseSocket.createServer(dlPath);
+            JSONObject dlJsON = discussionResponseSocket.getJsonObject();
+            if (dlJsON.has("Discussions")) {
+                JSONArray dlArray = new JSONArray(dlJsON.getString("Discussions"));
+                for (int i = 0; i < dlArray.length(); i++) {
+                    JSONObject responses = dlArray.getJSONObject(i);
+                    String discussionid = responses.getString("discussionid");
+                    content2 += discussionid+" ";
+                }}}}*/
+
         TextView assignmentInfo = (TextView) findViewById(R.id.assignmentInfo);
         assignmentInfo.setText(content2);
     }
