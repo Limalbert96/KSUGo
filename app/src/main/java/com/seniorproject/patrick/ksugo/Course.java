@@ -119,6 +119,10 @@ public class Course {
         discussionBoard.add(newDiscussionBoard);
         discussionBoardCount++;
     }
+    public void createDiscussionBoard(DiscussionBoard discussionBoard){
+        this.discussionBoard.add(discussionBoard);
+        discussionBoardCount++;
+    }
 
 }
 
