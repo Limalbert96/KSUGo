@@ -8,6 +8,10 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -46,7 +50,7 @@ public class DiscussionView extends AppCompatActivity {
         TextView orginalText=(TextView) findViewById(R.id.originalDiscussionText);
         orginalText.setText(discussion.toString());
     }
-    public void postReply(View view){
+    public void postReply(View view) throws IOException, JSONException {
         EditText discussion=(EditText) findViewById(R.id.responseText);
         String responseText=discussion.getText().toString();
         for (Course course : D2L.courses1) {
@@ -57,6 +61,12 @@ public class DiscussionView extends AppCompatActivity {
                     response.setCreatorName(D2L.member.getName());
                     response.setResponseID(Integer.toString(this.discussion.getDiscussionID()));
                     if(discussionBoard.getTitle()==this.discussionBoard.getTitle()){
+                        KSUSocket responseSocket=new KSUSocket();
+                        String discussionid =Integer.toString(discussionBoard.getDiscussionBoard().get(responsePosition-1).getDiscussionID());
+                        String path="discussionslist/" + discussionBoard.getDiscussionBoardID() + "/discussions/" + discussionid;
+                        JSONObject repsonse=new JSONObject();
+                        responseSocket.postJsonObject(path,repsonse);
+
                         discussionBoard.getDiscussionBoard().get(responsePosition-1).addReplies(response);
                     }
 

@@ -61,6 +61,9 @@ public class KSUSocket {
     public JSONObject getJsonObject(){
         return jsonObject;
     }
+    public void postJsonObject(String path, JSONObject jsonObject){
+
+    }
 
     public void createServer(String path) throws IOException, JSONException {
         String username=Login.member.getUsername();

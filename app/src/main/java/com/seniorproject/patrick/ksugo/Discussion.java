@@ -8,10 +8,10 @@ import java.util.Date;
  */
 
 public class Discussion {
-    private int discussionID;
+    private int discussionID;//If discussion is not a repsonse this its ID
     private String creatorName;
     private String title;
-    private String responseID;//If discussion is a response, this is its main id
+    private String responseID;//If discussion is a response, this is its ID
     private String discussion;
     private Date timePosted;
     private ArrayList<Discussion>replies=new ArrayList<>();
