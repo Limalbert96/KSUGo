@@ -180,7 +180,7 @@ public class D2L extends AppCompatActivity implements CoursesFrag.OnFragmentInte
 
     }*/
 
-    public void insertCourses() {
+ /*   public void insertCourses() {
         Assignments assignment1 = new Assignments();
         Assignments assignment2 = new Assignments();
         Assignments assignment3 = new Assignments();
@@ -269,8 +269,8 @@ public class D2L extends AppCompatActivity implements CoursesFrag.OnFragmentInte
             }
         });
     }
-
-    public void addGrades() {
+*/
+   /* public void addGrades() {
         Grades grade = new Grades(92, "Assignment 1", "000111222333", "chem1211");
         Grades grade1 = new Grades(80, "Assignment 2", "000111222333", "chem1211");
         Grades grade2 = new Grades(100, "Assignment 3", "000111222333", "chem1211");
@@ -304,125 +304,7 @@ public class D2L extends AppCompatActivity implements CoursesFrag.OnFragmentInte
         allGrades.add(grade14);
         allGrades.add(grade15);
 
-    }
-
-    /*public void connect() throws IOException {
-        socket = new KSUSocket();
     }*/
-
-    public void retrieveData() throws IOException, JSONException, ParseException {
-        String username = Login.member.getUsername();
-        KSUSocket courseSocket = new KSUSocket();
-        //Courses
-        courseSocket.createServer("users/courses/" + username);
-        JSONObject courses = courseSocket.getJsonObject();
-        JSONArray jsonArray = new JSONArray(courses.getString("Courses"));
-        for (int i = 0; i < jsonArray.length(); i++)
-        {//Adds all courses
-            Course course = new Course();
-            JSONObject courseInfo = jsonArray.getJSONObject(i);
-            String courseName = courseInfo.getString("course id");
-            String courseID = courseInfo.getString("course id");
-            String courseSection = courseInfo.getString("section number");
-            course.setCourseSectionNumber(courseSection);
-            course.setCourseID(courseID);
-            course.setCourseName(courseName);
-            courses1.add(course);
-        }
-    }
-        //Assignments
-        ///courses/IT4153/section/2/assignments
-
-    public void addAssignements() throws IOException, JSONException, ParseException {
-        for (Course course:courses1) {
-            String courseSection = course.getCourseSectionNumber();
-            String courseID = course.getCourseID();
-            KSUSocket assignmentsSocket = new KSUSocket();
-            assignmentsSocket.createServer("courses/" + courseID + "/section/" + courseSection + "/assignments");
-            JSONObject assignements = assignmentsSocket.getJsonObject();
-            if (!assignements.getString("Assignments").isEmpty()) {
-                JSONArray assignmentArray = new JSONArray(assignements.getString("Assignments"));
-                for (int j = 0; j < assignmentArray.length(); j++) {
-                    Assignments assignment = new Assignments();
-                    JSONObject assignmentObject = assignmentArray.getJSONObject(j);
-                    String assignementName = assignmentObject.getString("assignment");
-                    String courseName = assignmentObject.getString("course id");
-                    String dueDate = assignmentObject.getString("duedate");
-                    String duetime = assignmentObject.getString("duetime");
-                    String section = assignmentObject.getString("section number");
-                    assignment.setCourseName(courseName);
-                    assignment.setAssignmentName(assignementName);
-                    assignment.setCourseSection(section);
-                    //DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX");//Might be causing the issue
-                    //Date date = dateFormat.parse(dueDate);//You will get date object relative to server/client timezone wherever it is parsed
-                    assignment.setDueDate(new Date(2018, 3, 24));
-                    assignment.setDueTime(duetime);
-                    course.addAssignment(assignment);
-                }
-            }
-        }
-    }
-
-    //Still within first for loop
-    //Annoucements
-    //13.59.236.94:3000/api/courses/:course_id/section/:section_id/announcements
-    public void addAnnouncements() throws IOException, JSONException, ParseException {
-        for (Course course : courses1) {
-            String courseID = course.getCourseID();
-            String courseSection = course.getCourseSectionNumber();
-            KSUSocket announcementSocket = new KSUSocket();
-            announcementSocket.createServer("courses/" + courseID + "/section/" + courseSection + "/announcements");
-            JSONObject announcements = announcementSocket.getJsonObject();
-            if (announcements.has("Announcements")) {
-                JSONArray announcementsArray = new JSONArray(announcements.getString("Announcements"));
-                for (int j = 0; j < announcementsArray.length(); j++) {
-                    JSONObject announcementObject = announcementsArray.getJSONObject(j);
-                    Annoucements annoucement = new Annoucements();
-                    String subject = announcementObject.getString("subject");
-                    String announcementName = announcementObject.getString("announcement");
-                    String dateString = announcementObject.getString("date");
-                    annoucement.setAnnoucementName(announcementName);
-                 //   DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX");
-                   // Date date = dateFormat.parse(dateString);//You will get date object relative to server/client timezone wherever it is parsed
-                    annoucement.setDate(new Date(2018, 3, 24));
-                    course.addAnnoucements(annoucement);
-                }
-            }
-        }
-    }
-
-    //Grades
-    //13.59.236.94:3000/api/users/nwilso54/grades/IT4153
-    public void addAllGrades() throws IOException, JSONException {
-        for (Course course : courses1) {
-            KSUSocket gradesSocket = new KSUSocket();
-
-            gradesSocket.createServer("users/" + Login.member.getUsername() + "/grades/" + course.getCourseID());
-            JSONObject grades = gradesSocket.getJsonObject();
-            if (grades.has("grades")) {
-                JSONArray gradesArray = new JSONArray(grades.getString("grades"));
-                for (int j = 0; j < gradesArray.length(); j++) {
-                    JSONObject gradeObject = gradesArray.getJSONObject(j);
-                    // Grades grade = new Grades();
-                    //Grades grade1 = new Grades(92, "Assignment 1", 000111222333, "chem1211");
-                    String value = gradeObject.getString("grade");
-                    String assignment = gradeObject.getString("assignment");
-                    String gradecourseID = gradeObject.getString("course id");
-                    String gradeSection = gradeObject.getString("section number");
-                    String student = gradeObject.getString("ksu id");
-                    Grades grade = new Grades(Double.parseDouble(value), assignment, student, gradecourseID, gradeSection);
-                    allGrades.add(grade);
-                }
-            }
-
-        }
-
-
-    }
-
-    public void setTabs() {
-
-    }
 
 }
 

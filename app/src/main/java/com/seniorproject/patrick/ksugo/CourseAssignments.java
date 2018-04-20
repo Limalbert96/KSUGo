@@ -62,7 +62,7 @@ public class CourseAssignments extends AppCompatActivity {
                     row.addView(dueDate);
 
                     assignmentName.setText(selectedCourse.getAssignments().get(j).getAssignmentName()+"   ");
-                    timeDue.setText(selectedCourse.getAssignments().get(j).getDueTime());
+                    timeDue.setText(selectedCourse.getAssignments().get(j).timeToString());
 
                     row2.addView(assignmentName);
                     row2.addView(timeDue);
@@ -73,7 +73,7 @@ public class CourseAssignments extends AppCompatActivity {
 
                 else if(selectedCourse.getAssignments().get(j).getDueDate()==selectedCourse.getAssignments().get(j-1).getDueDate()){
                     assignmentName.setText(selectedCourse.getAssignments().get(j).getAssignmentName()+" | ");
-                    timeDue.setText(selectedCourse.getAssignments().get(j).getDueTime());
+                    timeDue.setText(selectedCourse.getAssignments().get(j).timeToString());
 
 
                     row.addView(assignmentName);
@@ -88,7 +88,7 @@ public class CourseAssignments extends AppCompatActivity {
                     row.addView(dueDate);
 
                     assignmentName.setText(selectedCourse.getAssignments().get(j).getAssignmentName());
-                    timeDue.setText(selectedCourse.getAssignments().get(j).getDueTime());
+                    timeDue.setText(selectedCourse.getAssignments().get(j).timeToString());
 
                     row2.addView(assignmentName);
                     row2.addView(timeDue);

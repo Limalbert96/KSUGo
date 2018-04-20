@@ -16,7 +16,7 @@ public class Discussion {
     private Date timePosted;
     private ArrayList<Discussion>replies=new ArrayList<>();
     private int responseCount=0;
-
+    private Date datePosted;
     public Discussion() {
     }
     public Discussion(int discussionID) {
@@ -100,5 +100,16 @@ public class Discussion {
     }
     public void addReplies(Discussion discussion){
         replies.add(discussion);
+    }
+    public void setReplies(ArrayList<Discussion> replies) {
+        this.replies = replies;
+    }
+
+    public Date getDatePosted() {
+        return datePosted;
+    }
+
+    public void setDatePosted(Date datePosted) {
+        this.datePosted = datePosted;
     }
 }

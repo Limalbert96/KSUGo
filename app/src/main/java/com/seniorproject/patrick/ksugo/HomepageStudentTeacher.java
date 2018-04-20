@@ -45,10 +45,9 @@ public class HomepageStudentTeacher extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_homepagestudentteacher);
         member = Login.member;
-        if (name == null || name != member.getName()) {
             courses1.clear();
             allGrades.clear();
-        }
+
         if (courses1.isEmpty()) {
             Executors.newSingleThreadExecutor().submit(new Runnable() {
                 @Override
@@ -204,13 +203,13 @@ public class HomepageStudentTeacher extends AppCompatActivity {
                     String dueDate = assignmentObject.getString("duedate");
                     String duetime = assignmentObject.getString("duetime");
                     String section = assignmentObject.getString("section number");
+                    Date date=new SimpleDateFormat("yyyy-MM-dd").parse(dueDate);
+                    Date time=new SimpleDateFormat("HH:mm").parse(duetime);
                     assignment.setCourseName(courseName);
                     assignment.setAssignmentName(assignementName);
                     assignment.setCourseSection(section);
-                    //DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX");//Might be causing the issue
-                    //Date date = dateFormat.parse(dueDate);//You will get date object relative to server/client timezone wherever it is parsed
-                    assignment.setDueDate(new Date(2018, 3, 24));
-                    assignment.setDueTime(duetime);
+                    assignment.setDueDate(date);
+                    assignment.setDueTime(time);
                     course.addAssignment(assignment);
                 }
             }
@@ -235,10 +234,12 @@ public class HomepageStudentTeacher extends AppCompatActivity {
                     String subject = announcementObject.getString("subject");
                     String announcementName = announcementObject.getString("announcement");
                     String dateString = announcementObject.getString("date");
+                    //2017-02-15T00:00:00.000Z
+                    Date date=new SimpleDateFormat("yyyy-MM-dd").parse(dateString);
                     annoucement.setAnnoucementName(announcementName);
                     //   DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX");
                     // Date date = dateFormat.parse(dateString);//You will get date object relative to server/client timezone wherever it is parsed
-                    annoucement.setDate(new Date(2018, 3, 24));
+                    annoucement.setDate(date);
                     course.addAnnoucements(annoucement);
                 }
             }
@@ -309,7 +310,7 @@ public class HomepageStudentTeacher extends AppCompatActivity {
         }
     }
 
-    public void addDiscussions() throws IOException, JSONException {
+    public void addDiscussions() throws IOException, JSONException, ParseException {
         //13.59.236.94:3000/api/discussionslist/:iddiscussionslist/discussions
         for (Course course : HomepageStudentTeacher.courses1) {
             for (DiscussionBoard discussionBoard : course.getDiscussionBoard()) {
@@ -327,13 +328,17 @@ public class HomepageStudentTeacher extends AppCompatActivity {
                         String body = responses.getString("body");
                         String creatorName = responses.getString("ksu id");
                         String postTime = responses.getString("posttime");
+                        String postdate = responses.getString("postdate");
                         Discussion discussion = new Discussion();
                         discussion.setDiscussionID(Integer.parseInt(discussionid));
                         discussion.setDiscussion(body);
                         discussion.setTitle(subject);
                         discussion.setCreatorName(creatorName);
-                        Date date = new Date();
+                        Date date=new SimpleDateFormat("yyyy-MM-dd").parse(postdate);
+                        Date time=new SimpleDateFormat("HH:mm").parse(postTime);
                         discussion.setTimePosted(date);
+                        discussion.setDatePosted(date);
+                        discussion.setTimePosted(time);
                         discussionBoard.addDiscussion(discussion);
                         KSUSocket replySocket = new KSUSocket();
                         String replyPath = "discussionslist/" + discussionBoard.getDiscussionBoardID() + "/discussions/" + discussionid;

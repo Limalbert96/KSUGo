@@ -11,6 +11,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.Date;
 
+import static com.seniorproject.patrick.ksugo.CourseDiscussion.responsePosition;
 import static com.seniorproject.patrick.ksugo.CourseDiscussion.selectedDiscussion;
 
 public class DiscussionView extends AppCompatActivity {
@@ -56,7 +57,7 @@ public class DiscussionView extends AppCompatActivity {
                     response.setCreatorName(D2L.member.getName());
                     response.setResponseID(Integer.toString(this.discussion.getDiscussionID()));
                     if(discussionBoard.getTitle()==this.discussionBoard.getTitle()){
-                        discussionBoard.addDiscussion(response);
+                        discussionBoard.getDiscussionBoard().get(responsePosition-1).addReplies(response);
                     }
 
                 }

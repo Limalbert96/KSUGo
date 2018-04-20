@@ -161,7 +161,7 @@ public class AssignmentsFrag extends Fragment {
             currentAssignment=assignment;
             courseName.setText(String.format("%s ", assignment.getCourseName()));
             assignmentName.setText(Html.fromHtml("<u>"+assignment.getAssignmentName()+"</u>"));
-            timeDue.setText(assignment.getDueTime());
+            timeDue.setText(assignment.timeToString());
             row2.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {

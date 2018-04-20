@@ -47,7 +47,7 @@ public class AssignmentView extends AppCompatActivity {
             TextView assignmentTitle = (TextView) findViewById(R.id.assignmentName);
         assignmentTitle.setText(AssignmentsFrag.selectedAssignment.getAssignmentName());
         TextView assignmentDueDate = (TextView) findViewById(R.id.assignmentDueDate);
-        assignmentDueDate.setText(String.format("Due: %s %s", AssignmentsFrag.selectedAssignment.dateToString(), AssignmentsFrag.selectedAssignment.getDueTime()));
+        assignmentDueDate.setText(String.format("Due: %s %s", AssignmentsFrag.selectedAssignment.dateToString(), AssignmentsFrag.selectedAssignment.timeToString()));
     }
 
     public void back(View view) {
