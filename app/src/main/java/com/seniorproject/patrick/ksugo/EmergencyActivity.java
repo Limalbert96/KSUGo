@@ -132,7 +132,7 @@ public class EmergencyActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }*/
 
-    public void home(View view){
+    public void emergencyHome(View view){
         finish();
     }
 

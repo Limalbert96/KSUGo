@@ -32,7 +32,10 @@
         <activity android:name=".D2L" />
         <activity android:name=".HomepageGuest" />
         <activity android:name=".EmergencyActivity" />
-        <activity android:name=".Directory"/>
+        <activity
+            android:name=".Directory"
+            android:theme="@style/AppTheme.NoActionBar"
+            />
         <activity android:name=".NewsFeed"/>
         <activity android:name=".Handshake"/>
         <activity android:name=".OwlLife"/>

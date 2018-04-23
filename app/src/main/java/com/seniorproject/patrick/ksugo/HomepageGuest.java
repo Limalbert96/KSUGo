@@ -7,6 +7,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageButton;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+import java.util.concurrent.Executors;
+
 public class HomepageGuest extends AppCompatActivity {
 
     private ImageButton BOB;
@@ -17,11 +24,27 @@ public class HomepageGuest extends AppCompatActivity {
     private ImageButton Emergency;
     private ImageButton Disabilities;
 
+    public static JSONObject eventsObjectGuest;
+    public static JSONArray eventsJSONArrayGuest = new JSONArray();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_homepage_guest);
+
+        Executors.newSingleThreadExecutor().submit(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    allEventsGuest();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
 
         BOB = (ImageButton) findViewById(R.id.BOBButton);
         ContactDirectory = (ImageButton) findViewById(R.id.ContactDirectoryButton);
@@ -86,7 +109,13 @@ public class HomepageGuest extends AppCompatActivity {
                 startActivity(new Intent(HomepageGuest.this, Events.class));
             }
         });
+    }
 
-
+    public void allEventsGuest() throws IOException, JSONException {
+        String path = "events";
+        KSUSocket eventsSocket = new KSUSocket();
+        eventsSocket.createServer(path);
+        eventsObjectGuest = eventsSocket.getJsonObject();
+        eventsJSONArrayGuest = new JSONArray(eventsObjectGuest.getString("Events"));
     }
 }

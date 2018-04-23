@@ -25,13 +25,11 @@ public class KSUSocket {
     private BufferedReader in;
     private JSONObject jsonObject;
 
-
-
-
     public KSUSocket() throws IOException {
         ip="13.59.236.94";
         port=3000;
     }
+
     public void readServer(String path) throws IOException, JSONException {
         socket=new Socket(ip,port);
 
@@ -87,8 +85,6 @@ public class KSUSocket {
         in.close();
         con.disconnect();
         jsonObject=new JSONObject(content.toString());
-
-
 
     }
 

@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <!-- FROM ACTIVITY COURSE ASSIGNMENTS -->
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appbar"
         android:layout_width="match_parent"
@@ -40,8 +39,8 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:background="@color/colorAccent"
-                android:onClick="onClick"
-                android:text="Back"
+                android:onClick="eventsHome"
+                android:text="Home"
                 android:textColor="@android:color/white"
                 app:layout_constraintBottom_toTopOf="@+id/courAssignText"
                 app:layout_constraintEnd_toEndOf="parent"

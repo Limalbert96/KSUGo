@@ -51,7 +51,16 @@ public class Events extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_events2);
-        jsonArray=HomepageStudentTeacher.eventsJSONArray;
+
+        if(jsonArray == null){
+            jsonArray = new JSONArray(new ArrayList<String>());
+            jsonArray=HomepageGuest.eventsJSONArrayGuest;
+        }else{
+            jsonArray = new JSONArray(new ArrayList<String>());
+            jsonArray=HomepageStudentTeacher.eventsJSONArray;
+        }
+
+
         TextView title=(TextView) findViewById(R.id.eventText);
         title.setText(String.format("Events"));
 
@@ -168,8 +177,6 @@ public class Events extends AppCompatActivity{
                 return event1.getEventDate().compareTo(event2.getEventDate());
             }
         });
-
-
     }
 
     //assign data to table view
@@ -229,14 +236,13 @@ public class Events extends AppCompatActivity{
             eventsTable.addView(row2);
             eventsTable.addView(row3);
             eventsTable.addView(row4);
-
         }
     }
 
     // main
 
     // for home button
-    public void onClick(View view) {
+    public void eventsHome(View view) {
         finish();
 
     }

@@ -7,40 +7,48 @@
     tools:context=".EmergencyActivity">
 
     <android.support.design.widget.AppBarLayout
+        android:id="@+id/appbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:theme="@style/AppTheme.AppBarOverlay">
+        android:layout_height="wrap_content">
 
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_height="wrap_content"
+        <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
-            android:minHeight="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            android:theme="@style/AppTheme.PopupOverlay">
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/eventText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_weight="1"
+                android:text="Emergency Services"
+                android:textAppearance="@style/TextAppearance.AppCompat.SearchResult.Title"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/button" />
+
             <Button
-                android:id="@+id/emergencyHome"
-                style="@style/Widget.AppCompat.Button.Colored"
-                android:layout_width="71dp"
-                android:layout_height="40dp"
+                android:id="@+id/button"
+                android:layout_width="wrap_content"
+                android:layout_height="28dp"
+                android:layout_marginBottom="8dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
-                android:layout_weight="1"
-                android:onClick="home"
+                android:background="@color/colorAccent"
+                android:onClick="emergencyHome"
                 android:text="Home"
-                app:layout_constraintBottom_toBottomOf="parent"
+                android:textColor="@android:color/white"
+                app:layout_constraintBottom_toTopOf="@+id/courAssignText"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintHorizontal_bias="0.024"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.0" />
-
-
-
-        </android.support.v7.widget.Toolbar>
-
-
+                app:layout_constraintTop_toTopOf="parent" />
+        </android.support.constraint.ConstraintLayout>
 
     </android.support.design.widget.AppBarLayout>
 
@@ -51,3 +59,6 @@
 
 
 </android.support.design.widget.CoordinatorLayout>
+
+
+

@@ -36,8 +36,12 @@ public class HomepageStudentTeacher extends AppCompatActivity {
     private JSONArray jsonArray;
     public static ArrayList<Course> courses1 = new ArrayList<Course>();
     private String name;
+
     public static JSONObject eventsObject;
     public static JSONArray eventsJSONArray = new JSONArray();
+
+    public static JSONObject facultyObject;
+    public static JSONArray facultyJSONArray = new JSONArray();
 
 
     @Override
@@ -59,6 +63,7 @@ public class HomepageStudentTeacher extends AppCompatActivity {
                         addAssignements();
                         addAllGrades();
                         allEvents();
+                        allFaculties();
                         addDiscussionBoards();
                         addDiscussions();
                     } catch (IOException e) {
@@ -282,6 +287,14 @@ public class HomepageStudentTeacher extends AppCompatActivity {
         eventsSocket.createServer(path);
         eventsObject = eventsSocket.getJsonObject();
         eventsJSONArray = new JSONArray(eventsObject.getString("Events"));
+    }
+
+    public void allFaculties() throws IOException, JSONException {
+        String path = "users/faculty";
+        KSUSocket facultySocket = new KSUSocket();
+        facultySocket.createServer(path);
+        facultyObject = facultySocket.getJsonObject();
+        facultyJSONArray = new JSONArray(facultyObject.getString("Faculty"));
     }
 
     public void addDiscussionBoards() throws IOException, JSONException, ParseException {
