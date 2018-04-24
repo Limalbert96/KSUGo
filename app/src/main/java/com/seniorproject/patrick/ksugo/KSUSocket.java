@@ -67,7 +67,7 @@ public class KSUSocket {
         String username=Login.member.getUsername();
         String pass=Login.member.getPassword();
 
-        URL url = new URL("http://13.59.236.94:3000/api/"+path);
+        URL url = new URL("http://" + this.ip + ":" + this.port + "/api/" + path);
         HttpURLConnection con = (HttpURLConnection) url.openConnection();
         con.setRequestMethod("GET");
         con.setRequestProperty("Content-Type", "application/json");
