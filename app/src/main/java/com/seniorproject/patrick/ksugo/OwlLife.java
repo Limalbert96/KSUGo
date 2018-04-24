@@ -13,43 +13,35 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.TabHost;
 
 
-public class OwlLife extends AppCompatActivity  implements OwlLifeNews.OnFragmentInteractionListener,OwlLifeGroups.OnFragmentInteractionListener,
-        OwlLifeEvents.OnFragmentInteractionListener,OwlLifeHome.OnFragmentInteractionListener {
+public class OwlLife extends AppCompatActivity{
 
-    private static final String TAG = "OwlLife";
+    //private static final String TAG = "OwlLife";
 
-    private ViewPager viewPager;
-    private TabLayout tabLayout;
+    private WebView thisWebView;
+    //private ViewPager viewPager;
+    //private TabLayout tabLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_owllife);
-        tabLayout = (TabLayout) findViewById(R.id.olTabs);
-        final OLFragmentAdapter adapter = new OLFragmentAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
-        viewPager = (ViewPager) findViewById(R.id.olContainer);
-        viewPager.setAdapter(adapter);
-        viewPager.setOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
-        tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-            @Override
-            public void onTabSelected(TabLayout.Tab tab) {
-                viewPager.setCurrentItem(tab.getPosition());
-            }
+        thisWebView = (WebView)findViewById(R.id.olView);
+        WebSettings ws = thisWebView.getSettings();
+        ws.setJavaScriptEnabled(true);
+        thisWebView.loadUrl("https://owllife.kennesaw.edu");
+        thisWebView.setWebViewClient(new WebViewClient() {
 
-            @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
-            }
+            public void onPageFinished(WebView view, String url) {
+                findViewById(R.id.owllifeLoadingPanel).setVisibility(View.GONE);
 
-            @Override
-            public void onTabReselected(TabLayout.Tab tab) {
             }
-
         });
-
-
     }
 
   /*  private void setupViewPager(ViewPager viewPager){
@@ -61,20 +53,18 @@ public class OwlLife extends AppCompatActivity  implements OwlLifeNews.OnFragmen
         viewPager.setAdapter(adapter);
 
     }
-
-
-    public void backPressed(View view) {
-        Intent intent = getIntent();
-        finish();
-        startActivity(intent);
-    }
 */
+
+    public void onBackPressed() {
+        if(thisWebView.canGoBack()){
+            thisWebView.goBack();
+        } else {
+            super.onBackPressed();
+        }
+    }
+
     public void home(View view){
         finish();
     }
 
-    @Override
-    public void onFragmentInteraction(Uri uri) {
-
-    }
 }
