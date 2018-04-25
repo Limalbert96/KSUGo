@@ -31,7 +31,7 @@ public class CourseGrades extends AppCompatActivity {
     public void addGrades(){
         TableLayout gradesTable= (TableLayout) findViewById(R.id.courseGradesTable);
         for(Grades grade:D2L.allGrades){
-                if(D2L.selectedCourse.equals(grade.getCourseID())) {
+                if(D2L.selectedCourseID.equals(grade.getCourseID())) {
                     TableRow row = new TableRow(getApplicationContext());
                     TextView assignmentName = new TextView(getApplicationContext());
                     assignmentName.setGravity(View.FOCUS_RIGHT);

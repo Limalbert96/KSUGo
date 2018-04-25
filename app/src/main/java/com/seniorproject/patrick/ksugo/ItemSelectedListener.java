@@ -12,6 +12,11 @@ public class ItemSelectedListener implements AdapterView.OnItemSelectedListener 
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
         D2L.selectedCourse = adapterView.getItemAtPosition(i).toString();
+        for(Course course: D2L.courses1){
+            if (adapterView.getItemAtPosition(i).toString()==course.getCourseName()){
+                D2L.selectedCourseID=course.getCourseID();
+            }
+        }
 
     }
 

@@ -15,7 +15,7 @@
         android:roundIcon="@mipmap/ic_launcher2_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Login">
+        <activity android:name=".Login" android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -23,27 +23,28 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".CourseContent"/>
-        <activity android:name=".CourseAnnouncements" />
-        <activity android:name=".CourseAssignments" />
-        <activity android:name=".CourseDiscussion" />
-        <activity android:name=".CourseGrades" />
-        <activity android:name=".HomepageStudentTeacher" />
-        <activity android:name=".D2L" />
-        <activity android:name=".HomepageGuest" />
-        <activity android:name=".EmergencyActivity" />
+        <activity android:name=".CourseContent" android:screenOrientation="portrait"/>
+        <activity android:name=".CourseAnnouncements" android:screenOrientation="portrait"/>
+        <activity android:name=".CourseAssignments" android:screenOrientation="portrait"/>
+        <activity android:name=".CourseDiscussion" android:screenOrientation="portrait"/>
+        <activity android:name=".CourseGrades" android:screenOrientation="portrait"/>
+        <activity android:name=".HomepageStudentTeacher" android:screenOrientation="portrait"/>
+        <activity android:name=".D2L" android:screenOrientation="portrait"/>
+        <activity android:name=".HomepageGuest" android:screenOrientation="portrait"/>
+        <activity android:name=".EmergencyActivity" android:screenOrientation="portrait"/>
         <activity
             android:name=".Directory"
             android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait"
             />
-        <activity android:name=".NewsFeed"/>
-        <activity android:name=".Handshake"/>
-        <activity android:name=".OwlLife"/>
-        <activity android:name=".BOB"/>
-        <activity android:name=".Events"/>
-        <activity android:name=".Disabilities"/>
-        <activity android:name=".AssignmentView"/>
-        <activity android:name=".DiscussionView"/>
+        <activity android:name=".NewsFeed" android:screenOrientation="portrait"/>
+        <activity android:name=".Handshake" android:screenOrientation="portrait"/>
+        <activity android:name=".OwlLife" android:screenOrientation="portrait"/>
+        <activity android:name=".BOB"  android:screenOrientation="portrait"/>
+        <activity android:name=".Events" android:screenOrientation="portrait"/>
+        <activity android:name=".Disabilities" android:screenOrientation="portrait"/>
+        <activity android:name=".AssignmentView" android:screenOrientation="portrait"/>
+        <activity android:name=".DiscussionView" android:screenOrientation="portrait"/>
         <!--
             The API key for Google Maps-based APIs is defined as a string resource.
             (See the file "res/values/google_maps_api.xml").
@@ -58,6 +59,7 @@
 
         <activity
             android:name=".InteractiveMap"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_interactive_map"></activity>
 
 

@@ -20,74 +20,138 @@
         app:layout_constraintTop_toTopOf="parent"
         />
 
-    <Button
-        android:id="@+id/contentButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <ImageButton
+        android:id="@+id/gradesButton"
+        android:layout_width="92dp"
+        android:layout_height="92dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="8dp"
+        android:background="@android:color/white"
         android:onClick="onClick"
-        android:text="Content"
+        android:scaleType="fitCenter"
+        android:text="Grades"
+        app:layout_constraintBottom_toBottomOf="@+id/discussionsButton"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinner" />
+        app:layout_constraintStart_toEndOf="@+id/discussionsButton"
+        app:layout_constraintTop_toTopOf="@+id/discussionsButton"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/grades_button" />
 
-    <Button
-        android:id="@+id/gradesButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <ImageButton
+        android:id="@+id/annoucementButton"
+        android:layout_width="92dp"
+        android:layout_height="92dp"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="56dp"
-        android:text="Grades"
+        android:layout_marginTop="8dp"
+        android:adjustViewBounds="false"
+        android:background="@android:color/white"
+        android:cropToPadding="false"
         android:onClick="onClick"
+        android:scaleType="fitCenter"
+        android:text="Announcements"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.2"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/discussionsButton"
-        app:layout_constraintVertical_bias="0.028" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.19999999"
+        app:srcCompat="@drawable/announcements_button" />
 
-    <Button
-        android:id="@+id/annoucementButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="52dp"
-        android:text="Announcements"
-        android:onClick="onClick"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/assignmentsButton" />
-
-    <Button
+    <ImageButton
         android:id="@+id/discussionsButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="92dp"
+        android:layout_height="92dp"
+        android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="56dp"
+        android:layout_marginTop="8dp"
+        android:background="@android:color/white"
         android:onClick="onClick"
+        android:scaleType="fitCenter"
         android:text="Discussions"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.2"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/annoucementButton" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.6"
+        app:srcCompat="@drawable/discussions_button" />
 
-    <Button
+    <ImageButton
         android:id="@+id/assignmentsButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
+        android:layout_width="92dp"
+        android:layout_height="92dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="52dp"
+        android:background="@android:color/white"
         android:onClick="onClick"
         android:text="Assignments"
+        app:layout_constraintBottom_toTopOf="@+id/textView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/contentButton" />
+        app:layout_constraintHorizontal_bias="0.434"
+        app:layout_constraintStart_toEndOf="@+id/annoucementButton"
+        app:layout_constraintTop_toTopOf="@+id/annoucementButton"
+        app:srcCompat="@drawable/assignments_button" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="4dp"
+        android:text="Announcements"
+        app:layout_constraintBottom_toTopOf="@+id/annoucementButton"
+        app:layout_constraintEnd_toEndOf="@+id/annoucementButton"
+        app:layout_constraintHorizontal_bias="0.47"
+        app:layout_constraintStart_toStartOf="@+id/annoucementButton"
+        app:layout_constraintTop_toBottomOf="@+id/annoucementButton"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="4dp"
+        android:text="Assignments"
+        app:layout_constraintBottom_toTopOf="@+id/assignmentsButton"
+        app:layout_constraintEnd_toEndOf="@+id/assignmentsButton"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/assignmentsButton"
+        app:layout_constraintTop_toBottomOf="@+id/assignmentsButton"
+        app:layout_constraintVertical_bias="0.035" />
+
+    <TextView
+        android:id="@+id/textView18"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Discussions"
+        app:layout_constraintBottom_toTopOf="@+id/discussionsButton"
+        app:layout_constraintEnd_toEndOf="@+id/discussionsButton"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/discussionsButton"
+        app:layout_constraintTop_toBottomOf="@+id/discussionsButton"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/textView19"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="4dp"
+        android:text="Grades"
+        app:layout_constraintBottom_toTopOf="@+id/gradesButton"
+        app:layout_constraintEnd_toEndOf="@+id/gradesButton"
+        app:layout_constraintHorizontal_bias="0.483"
+        app:layout_constraintStart_toStartOf="@+id/gradesButton"
+        app:layout_constraintTop_toBottomOf="@+id/gradesButton"
+        app:layout_constraintVertical_bias="0.0" />
 
 </android.support.constraint.ConstraintLayout>

@@ -179,7 +179,7 @@ public class HomepageStudentTeacher extends AppCompatActivity {
         for (int i = 0; i < jsonArray.length(); i++) {//Adds all courses
             Course course = new Course();
             JSONObject courseInfo = jsonArray.getJSONObject(i);
-            String courseName = courseInfo.getString("course id");
+            String courseName = courseInfo.getString("course name");
             String courseID = courseInfo.getString("course id");
             String courseSection = courseInfo.getString("section number");
             course.setCourseSectionNumber(courseSection);

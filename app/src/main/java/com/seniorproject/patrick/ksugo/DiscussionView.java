@@ -36,38 +36,39 @@ public class DiscussionView extends AppCompatActivity {
         discussion = discussionBoard.getDiscussionBoard().get(CourseDiscussion.responsePosition - 1);
         discussions.add(discussion.toString());
         discussions.add("Responses:");
-        for(Discussion discussion: discussionBoard.getDiscussionBoard()){
-            for(Discussion discussion1:discussion.getReplies()){
-                discussions.add(discussion1.responseToString());
-            }
+        for (Discussion discussion1 : discussion.getReplies()) {
+            discussions.add(discussion1.responseToString());
         }
+
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.assignment_layoutfile, R.id.discussion, discussions);
         ListView listView = (ListView) findViewById(R.id.selectedDiscussionListView);
         listView.setAdapter(adapter);
     }
-    public void reply(View view){
+
+    public void reply(View view) {
         setContentView(R.layout.response_discussion);
-        TextView orginalText=(TextView) findViewById(R.id.originalDiscussionText);
+        TextView orginalText = (TextView) findViewById(R.id.originalDiscussionText);
         orginalText.setText(discussion.toString());
     }
+
     public void postReply(View view) throws IOException, JSONException {
-        EditText discussion=(EditText) findViewById(R.id.responseText);
-        String responseText=discussion.getText().toString();
+        EditText discussion = (EditText) findViewById(R.id.responseText);
+        String responseText = discussion.getText().toString();
         for (Course course : D2L.courses1) {
             if (course.getCourseName() == D2L.selectedCourse) {
                 for (DiscussionBoard discussionBoard : course.getDiscussionBoard()) {
-                    Discussion response=new Discussion();
+                    Discussion response = new Discussion();
                     response.setDiscussion(responseText);
                     response.setCreatorName(D2L.member.getName());
                     response.setResponseID(Integer.toString(this.discussion.getDiscussionID()));
-                    if(discussionBoard.getTitle()==this.discussionBoard.getTitle()){
-                        KSUSocket responseSocket=new KSUSocket();
-                        String discussionid =Integer.toString(discussionBoard.getDiscussionBoard().get(responsePosition-1).getDiscussionID());
-                        String path="discussionslist/" + discussionBoard.getDiscussionBoardID() + "/discussions/" + discussionid;
-                        JSONObject repsonse=new JSONObject();
-                        responseSocket.postJsonObject(path,repsonse);
+                    if (discussionBoard.getTitle() == this.discussionBoard.getTitle()) {
+                        KSUSocket responseSocket = new KSUSocket();
+                        String discussionid = Integer.toString(discussionBoard.getDiscussionBoard().get(responsePosition - 1).getDiscussionID());
+                        String path = "discussionslist/" + discussionBoard.getDiscussionBoardID() + "/discussions/" + discussionid;
+                        JSONObject repsonse = new JSONObject();
+                        responseSocket.postJsonObject(path, repsonse);
 
-                        discussionBoard.getDiscussionBoard().get(responsePosition-1).addReplies(response);
+                        discussionBoard.getDiscussionBoard().get(responsePosition - 1).addReplies(response);
                     }
 
                 }
@@ -80,7 +81,8 @@ public class DiscussionView extends AppCompatActivity {
         overridePendingTransition(0, 0);
 
     }
-    public void cancel(View view){
+
+    public void cancel(View view) {
         finish();
         overridePendingTransition(0, 0);
         startActivity(getIntent());

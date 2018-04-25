@@ -202,8 +202,8 @@ public class Directory extends AppCompatActivity
             for (Faculty faculty : entry.getValue()) {
                 childRows.add(new ChildRow(R.mipmap.generic_icon,
                         faculty.getFirstName() + " " + faculty.getLastName() + "\nEmail: " +
-                                faculty.getEmail() + "\nTelp: " + faculty.getPhone() + "\nOffice: " +
-                                faculty.getOffice() + "\nOffice Hours: " + faculty.getHours()));
+                                faculty.getEmail() + "\nTelp: " + faculty.getPhone() +"\nDept: "+faculty.getDept()+
+                                "\nOffice: " +faculty.getOffice() + "\nOffice Hours: " + faculty.getHours()));
             }
 
             //generate category

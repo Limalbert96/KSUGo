@@ -53,6 +53,7 @@ public class D2L extends AppCompatActivity implements CoursesFrag.OnFragmentInte
     public static ArrayList<Course> courses1 = new ArrayList<Course>();
     // public static ArrayList<Course> courses = new ArrayList<Course>();
     public static String selectedCourse;
+    public static String selectedCourseID;
     public static ArrayList<Grades> allGrades = new ArrayList<>();
     public static MemberKSU member;
     public static ArrayList<Annoucements> globalAnnouncements = new ArrayList<>();
@@ -144,12 +145,6 @@ public class D2L extends AppCompatActivity implements CoursesFrag.OnFragmentInte
             case R.id.assignmentsButton: {
 
                 startActivity(new Intent(D2L.this, CourseAssignments.class));
-
-                break;
-            }
-            case R.id.contentButton: {
-
-                startActivity(new Intent(D2L.this, CourseContent.class));
 
                 break;
             }

@@ -186,7 +186,12 @@ public class CourseDiscussion extends AppCompatActivity {
             if (course.getCourseName() == D2L.selectedCourse) {
                 for (DiscussionBoard discussionBoard : course.getDiscussionBoard()) {
                     if (discussionBoard.getTitle() == selectedDiscussion) {
-                        discussionBoard.addDiscussion(Login.member.getName(), title.getText().toString(), discussion.getText().toString(), new Date());
+                        Discussion discussion1= new Discussion();
+                        discussion1.setDiscussion(discussion.getText().toString());
+                        discussion1.setTitle(title.getText().toString());
+                        discussion1.setCreatorName(Login.member.getName());
+                        discussion1.setDatePosted(new Date());
+                        discussionBoard.addDiscussion(discussion1);
                     }
                 }
             }
