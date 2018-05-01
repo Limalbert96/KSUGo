@@ -21,11 +21,7 @@ import android.widget.TabHost;
 
 public class OwlLife extends AppCompatActivity{
 
-    //private static final String TAG = "OwlLife";
-
     private WebView thisWebView;
-    //private ViewPager viewPager;
-    //private TabLayout tabLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -43,17 +39,6 @@ public class OwlLife extends AppCompatActivity{
             }
         });
     }
-
-  /*  private void setupViewPager(ViewPager viewPager){
-        SectionPageAdapter adapter = new SectionPageAdapter(getSupportFragmentManager());
-        adapter.addFragment(new OwlHome(), "HOME");
-        adapter.addFragment(new OwlEvents(), "EVENTS");
-        adapter.addFragment(new OwlGroups(), "GROUPS");
-        adapter.addFragment(new OwlNews(), "NEWS");
-        viewPager.setAdapter(adapter);
-
-    }
-*/
 
     public void onBackPressed() {
         if(thisWebView.canGoBack()){

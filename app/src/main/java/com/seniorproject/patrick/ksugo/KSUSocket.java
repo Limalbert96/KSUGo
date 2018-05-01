@@ -64,8 +64,6 @@ public class KSUSocket {
     }
 
     public void createServer(String path) throws IOException, JSONException {
-        String username=Login.member.getUsername();
-        String pass=Login.member.getPassword();
 
         URL url = new URL("http://" + this.ip + ":" + this.port + "/api/" + path);
         HttpURLConnection con = (HttpURLConnection) url.openConnection();

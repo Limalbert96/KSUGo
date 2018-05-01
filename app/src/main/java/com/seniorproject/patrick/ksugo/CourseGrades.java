@@ -25,8 +25,6 @@ public class CourseGrades extends AppCompatActivity {
 
     public void onClick(View view) {
         finish();
-        //startActivity(new Intent(CourseGrades.this,D2L.class));
-
     }
     public void addGrades(){
         TableLayout gradesTable= (TableLayout) findViewById(R.id.courseGradesTable);
@@ -46,33 +44,5 @@ public class CourseGrades extends AppCompatActivity {
                     gradesTable.addView(row);
                 }
         }
-        /*
-        ArrayList<Grades>grades=D2L.allGrades;
-        String selectedCourse="";
-        for(Course course: D2L.courses1){
-            if(course.getCourseID()==D2L.selectedCourse){
-                selectedCourse=course.getCourseID();
-            }
-        }
-        TableLayout gradesTable= (TableLayout) findViewById(R.id.courseGradesTable);
-        for(Grades grade : D2L.allGrades){
-            TableRow row= new TableRow(getApplicationContext());
-            TextView assignmentName=new TextView(getApplicationContext());
-            TextView assignmentGrade=new TextView(getApplicationContext());
-            assignmentName.setTextColor(getResources().getColor(R.color.black));
-            assignmentGrade.setTextColor(getResources().getColor(R.color.black));
-
-            if(grade.getCourseID()==D2L.selectedCourse){
-                assignmentName.setText(grade.getAssignment()+" : ");
-                assignmentGrade.setText(Double.toString(grade.getGrade()));
-                row.addView(assignmentName);
-                row.addView(assignmentGrade);
-                gradesTable.addView(row);
-            }
-
-        }*/
-
     }
-
-
 }

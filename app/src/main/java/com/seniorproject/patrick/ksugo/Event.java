@@ -93,6 +93,4 @@ public class Event {
         SimpleDateFormat dateFormat=new SimpleDateFormat("HH:mm:ss");
         return  dateFormat.format(eventDate);
     }
-
-
 }

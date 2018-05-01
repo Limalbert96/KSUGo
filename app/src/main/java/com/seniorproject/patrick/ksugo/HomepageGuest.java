@@ -26,6 +26,8 @@ public class HomepageGuest extends AppCompatActivity {
 
     public static JSONObject eventsObjectGuest;
     public static JSONArray eventsJSONArrayGuest = new JSONArray();
+    public static JSONObject facultyObjectGuest;
+    public static JSONArray facultyJSONArrayGuest = new JSONArray();
 
 
     @Override
@@ -33,18 +35,19 @@ public class HomepageGuest extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_homepage_guest);
 
-        Executors.newSingleThreadExecutor().submit(new Runnable() {
+        new Thread(new Runnable() {
             @Override
             public void run() {
                 try {
                     allEventsGuest();
+                    allFacultiesGuest();
                 } catch (IOException e) {
                     e.printStackTrace();
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
             }
-        });
+        }).start();
 
         BOB = (ImageButton) findViewById(R.id.BOBButton);
         ContactDirectory = (ImageButton) findViewById(R.id.ContactDirectoryButton);
@@ -109,6 +112,14 @@ public class HomepageGuest extends AppCompatActivity {
                 startActivity(new Intent(HomepageGuest.this, Events.class));
             }
         });
+    }
+
+    public void allFacultiesGuest() throws IOException, JSONException {
+        String path = "users/faculty";
+        KSUSocket facultySocket = new KSUSocket();
+        facultySocket.createServer(path);
+        facultyObjectGuest = facultySocket.getJsonObject();
+        facultyJSONArrayGuest = new JSONArray(facultyObjectGuest.getString("Faculty"));
     }
 
     public void allEventsGuest() throws IOException, JSONException {

@@ -51,10 +51,9 @@ public class Events extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_events2);
-
-        if(jsonArray == null){
+        if(HomepageGuest.eventsJSONArrayGuest.length() != 0){
             jsonArray = new JSONArray(new ArrayList<String>());
-            jsonArray=HomepageGuest.eventsJSONArrayGuest;
+            jsonArray = HomepageGuest.eventsJSONArrayGuest;
         }else{
             jsonArray = new JSONArray(new ArrayList<String>());
             jsonArray=HomepageStudentTeacher.eventsJSONArray;
@@ -72,63 +71,7 @@ public class Events extends AppCompatActivity{
         }
         addEventTable();
 
-     /*   Executors.newSingleThreadExecutor().submit(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    connect();
-                    retrieveData();
-                    socket.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-        });*/
-
     }
-
-    /*
-    // set data manually
-    public void insertEvents() {
-        Event event1 = new Event();
-        Event event2 = new Event();
-
-        event1.setEventName("All Majors Career Fair");
-        event1.setEventDescription("Companies are looking for interns and full time employment across all majors.");
-        event1.setEventBuilding("Gymnasium");
-        event1.setEventRoom("Gym");
-        event1.setEventDate(new Date(2018, 5, 15));
-        event1.setEventTime(new Time(12,0,0));
-
-        event2.setEventName("STEM Career Fair");
-        event2.setEventDescription("Companies are looking for interns and full time employment across all majors.");
-        event2.setEventBuilding("Gymnasium");
-        event2.setEventRoom("Gym");
-        event2.setEventDate(new Date(2018, 5, 22));
-        event2.setEventTime(new Time(12,0,0));
-
-
-        // push all data to the arraylist
-        for (Event event : allEvents) {
-            allEvents.add(event);
-        }
-
-        allEvents.add(event1);
-        allEvents.add(event2);
-
-        //to sort event by date
-        Collections.sort(allEvents, new Comparator<Event>() {
-            @Override
-            public int compare(Event event1, Event event2) {
-                return event1.getEventDate().compareTo(event2.getEventDate());
-            }
-        });
-    }
-
-    */
-
 
     public void getData()throws JSONException {
         for(int i=0;i<jsonArray.length();i++) {
@@ -151,15 +94,6 @@ public class Events extends AppCompatActivity{
                 // TODO Auto-generated catch block
                 e.printStackTrace();
             }
-
-            /* if time is Date
-            try {
-                SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
-                time = sdf.parse(jsonObject.getString("time"));
-            } catch (java.text.ParseException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            }*/
 
             event.setEventName(name);
             event.setEventDescription(description);
@@ -209,14 +143,6 @@ public class Events extends AppCompatActivity{
 
             eventDate.setText(allEvents.get(j).dateToString());
             row.addView(eventDate);
-
-            // if time is Date
-            //eventTime.setText("Time: " + allEvents.get(j).timeToString());
-            //row.addView(eventTime);
-
-            // if date is String
-            //eventDate.setText(allEvents.get(j).getEventDate());
-            //row.addView(eventDate);
 
             eventTime.setText(allEvents.get(j).getEventTime());
             row.addView(eventTime);

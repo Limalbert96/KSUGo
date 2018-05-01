@@ -53,11 +53,10 @@ public class HomepageStudentTeacher extends AppCompatActivity {
             allGrades.clear();
 
         if (courses1.isEmpty()) {
-            Executors.newSingleThreadExecutor().submit(new Runnable() {
+            new Thread(new Runnable() {
                 @Override
                 public void run() {
                     try {
-                        // String path="/api/users/courses/"+Login.member.getUsername();
                         retrieveData();
                         addAnnouncements();
                         addAssignements();
@@ -74,7 +73,7 @@ public class HomepageStudentTeacher extends AppCompatActivity {
                         e.printStackTrace();
                     }
                 }
-            });
+            }).start();
         }
         D2L = (ImageButton) findViewById(R.id.D2LButton);
         OwlLife = (ImageButton) findViewById(R.id.OwllifeButton);
@@ -242,7 +241,6 @@ public class HomepageStudentTeacher extends AppCompatActivity {
                     //2017-02-15T00:00:00.000Z
                     Date date=new SimpleDateFormat("yyyy-MM-dd").parse(dateString);
                     annoucement.setAnnoucementName(announcementName);
-                    //   DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX");
                     // Date date = dateFormat.parse(dateString);//You will get date object relative to server/client timezone wherever it is parsed
                     annoucement.setDate(date);
                     course.addAnnoucements(annoucement);
@@ -263,8 +261,6 @@ public class HomepageStudentTeacher extends AppCompatActivity {
                 JSONArray gradesArray = new JSONArray(grades.getString("grades"));
                 for (int j = 0; j < gradesArray.length(); j++) {
                     JSONObject gradeObject = gradesArray.getJSONObject(j);
-                    // Grades grade = new Grades();
-                    //Grades grade1 = new Grades(92, "Assignment 1", 000111222333, "chem1211");
                     String value = gradeObject.getString("grade");
                     String assignment = gradeObject.getString("assignment");
                     String gradecourseID = gradeObject.getString("course id");

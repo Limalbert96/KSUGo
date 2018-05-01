@@ -157,7 +157,6 @@ public class AssignmentsFrag extends Fragment {
             TableRow row2 = new TableRow(getActivity().getApplicationContext());
             dueDate.setText(assignment.dateToString());
             row.addView(dueDate);
-          //  allDates.add(courses.get(i).getAssignments().get(j).getDueDate());
             currentAssignment=assignment;
             courseName.setText(String.format("%s ", assignment.getCourseName()));
             assignmentName.setText(Html.fromHtml("<u>"+assignment.getAssignmentName()+"</u>"));
@@ -176,51 +175,6 @@ public class AssignmentsFrag extends Fragment {
             assignmentsTable.addView(row);
             assignmentsTable.addView(row2);
         }
-       /* for (int i = 0; i < courses.size(); i++) {
-            for (int j = 0; j < courses.get(i).getAssignments().size(); j++) {
-                TableRow row = new TableRow(getActivity().getApplicationContext());
-
-                row.setBackgroundColor(getContext().getResources().getColor(R.color.rowBackground));
-
-                TextView courseName = new TextView(getActivity().getApplicationContext());
-                TextView assignmentName = new TextView(getActivity().getApplicationContext());
-                TextView timeDue = new TextView(getActivity().getApplicationContext());
-                TextView dueDate = new TextView(getActivity().getApplicationContext());
-
-                assignmentName.setTextColor(getResources().getColor(R.color.black));
-                timeDue.setTextColor(getResources().getColor(R.color.black));
-                dueDate.setTextColor(getResources().getColor(R.color.black));
-                timeDue.setTextColor(getResources().getColor(R.color.black));
-                courseName.setTextColor(getResources().getColor(R.color.black));
-
-                TableRow row2 = new TableRow(getActivity().getApplicationContext());
-                dueDate.setText(courses.get(i).getAssignments().get(j).dateToString());
-                row.addView(dueDate);
-
-                allDates.add(courses.get(i).getAssignments().get(j).getDueDate());
-                currentAssignment=courses.get(i).getAssignments().get(j);
-                courseName.setText(String.format("%s ", courses.get(i).getCourseName()));
-                              assignmentName.setText(Html.fromHtml("<u>"+courses.get(i).getAssignments().get(j).getAssignmentName()+"</u>"));
-                timeDue.setText(courses.get(i).getAssignments().get(j).getDueTime());
-                final int finalI = i;
-                final int finalJ = j;
-                row2.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        selectedAssignment=courses.get(finalI).getAssignments().get(finalJ);
-                        startActivity(new Intent(getActivity(),AssignmentView.class));
-
-                    }
-                });
-
-                row2.addView(courseName);
-                row2.addView(assignmentName);
-                row2.addView(timeDue);
-                assignmentsTable.addView(row);
-                assignmentsTable.addView(row2);
-
-            }
-        }*/
     }
 }
 

@@ -35,7 +35,6 @@ import java.util.TreeSet;
 
 public class Directory extends AppCompatActivity
         implements SearchView.OnQueryTextListener, SearchView.OnCloseListener{
-    //private WebView myWebView;
 
     private SearchManager searchManager;
     private android.widget.SearchView searchView;
@@ -47,31 +46,21 @@ public class Directory extends AppCompatActivity
 
     private JSONArray jsonArray=new JSONArray();
     private ArrayList<Faculty> allFaculties = new ArrayList<>();
-    //private ArrayList<Faculty> allDepartments = new ArrayList<>();
-    //private SortedSet<Faculty> allFaculties;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_directory);
-
-        /*
-        myWebView = (WebView)findViewById(R.id.direcView);
-        WebSettings webSettings = myWebView.getSettings();
-        webSettings.setJavaScriptEnabled(true);
-        myWebView.loadUrl("http://directory.kennesaw.edu/dir/people/");
-        myWebView.setWebViewClient(new WebViewClient() {
-
-            public void onPageFinished(WebView view, String url) {
-                findViewById(R.id.directoryLoadingPanel).setVisibility(View.GONE);
-
-            }
-        });*/
+        if(HomepageGuest.facultyJSONArrayGuest.length() != 0){
+            jsonArray = new JSONArray(new ArrayList<String>());
+            jsonArray = HomepageGuest.facultyJSONArrayGuest;
+        }else{
+            jsonArray = new JSONArray(new ArrayList<String>());
+            jsonArray = HomepageStudentTeacher.facultyJSONArray;
+        }
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        jsonArray=HomepageStudentTeacher.facultyJSONArray;
 
         searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
 
@@ -89,15 +78,6 @@ public class Directory extends AppCompatActivity
 
 
     }
-
-    /*
-    public void onBackPressed(){
-        if(myWebView.canGoBack()){
-            myWebView.goBack();
-        } else {
-            super.onBackPressed();
-        }
-    }*/
 
     public void getData()throws JSONException {
         for(int i=0;i<jsonArray.length();i++) {
@@ -128,57 +108,6 @@ public class Directory extends AppCompatActivity
 
 
     }
-
-
-/*
-    private void loadData() {
-        ArrayList<ChildRow> childRows = new ArrayList<ChildRow>();
-        ParentRow parentRow = null;
-
-        childRows.add(new ChildRow(R.mipmap.generic_icon
-                ,"Lorem ipsum dolor sit amet, consectetur adipiscing elit."));
-        childRows.add(new ChildRow(R.mipmap.generic_icon
-                , "Sit Fido, sit."));
-
-        parentRow = new ParentRow("First Group", childRows);
-        parentList.add(parentRow);
-
-        childRows = new ArrayList<ChildRow>();
-        childRows.add(new ChildRow(R.mipmap.generic_icon
-                , "Fido is the name of my dog."));
-        childRows.add(new ChildRow(R.mipmap.generic_icon
-                , "Add two plus two."));
-        parentRow = new ParentRow("Second Group", childRows);
-        parentList.add(parentRow);
-
-        childRows = new ArrayList<ChildRow>();
-        childRows.add(new ChildRow(R.mipmap.generic_icon,
-                "Selena" + " " + "He" + "\n" +
-                        "she4@kennesaw.edu" + "\n" + "404-456-1056" + "\n" +
-                        "J124" + "\n" + "R 3-5pm"));
-
-        parentRow = new ParentRow("Computer Science", childRows);
-        parentList.add(parentRow);
-
-    }*/
-
-
-    /*
-    private void loadData() {
-        ArrayList<ChildRow> childRows = new ArrayList<ChildRow>();
-        ParentRow parentRow = null;
-
-        for (int i=0;i<allFaculties.size();i++) {
-            childRows.add(new ChildRow(R.mipmap.generic_icon,
-                    allFaculties.get(i).getFirstName() + " " + allFaculties.get(i).getLastName() + "\n" +
-                    allFaculties.get(i).getEmail() + "\n" + allFaculties.get(i).getPhone() + "\n" +
-                    allFaculties.get(i).getOffice() + "\n" + allFaculties.get(i).getHours()));
-
-            //parentRow = new ParentRow(allFaculties.get(i).getDept(), childRows);
-            parentRow = new ParentRow("Computer Science", childRows);
-            parentList.add(parentRow);
-        }
-    }*/
 
 
     private void loadData() {

@@ -14,14 +14,6 @@ public class Grades {
 
     }
 
-  /*  public Grades(int grade, String assignment, String studentID, String courseID){
-        this.grade=grade;
-        this.assignment=assignment;
-        this.studentID=studentID;
-        this.courseID=courseID;
-
-    }*/
-
     public Grades(double grade, String assignment, String studentID, String courseID, String courseSectionNumber) {
         this.grade = grade;
         this.assignment = assignment;
