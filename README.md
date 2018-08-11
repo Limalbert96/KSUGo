@@ -1,6 +1,7 @@
 # KSUGo
 Kennesaw State University Mobile Application Senior Project
 
+## DESCRIPTION
 This project is a combination of useful features relative to KSU, contained within an Android Studio file structure of Java, xml, and iml files. The application is intended for use by KSU students, faculty, and guests in need of campus information or features that improve the quality of life while visiting. The project is primarily intended for Android phones, and is expected to have an iOS implementation in the future. The features included in the application include: D2L access, Handshake, OwlLife, BOB (Big Owl Bus) monitoring, Events Viewer, KSU Facebook and Twitter newsfeeds, Emergency Services (KSU assistance & police), Directory, and Interactive Map. 
 
 ## GETTING STARTED
