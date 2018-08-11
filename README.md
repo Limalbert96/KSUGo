@@ -1,4 +1,4 @@
-# ksu-go
+# KSUGo
 Kennesaw State University Mobile Application Senior Project
 
 This project is a combination of useful features relative to KSU, contained within an Android Studio file structure of Java, xml, and iml
@@ -42,14 +42,16 @@ ACKNOWLEDGEMENTS
 Special thanks to Nick Wilson for his substantial contributions to the backend and server for this project, as well as help from external websites such as Stackoverflow. 
 
 DOCUMENTATIONS
-KSUGo Documentations - contains SDP, Proposal, SRS, Middle Update, SDD, Final Update, and Final Binder of KSUGo Project
-Database and API Documentations - contains backend documentation by Nick Wilson
-Honors Documentations - contains Honors CS Capstone documentation by Albert Lim and Chase Godwin
+
+1. KSUGo Documentations - contains SDP, Proposal, SRS, Middle Update, SDD, Final Update, and Final Binder of KSUGo Project
+2. Database and API Documentations - contains backend documentation by Nick Wilson
+3. Honors Documentations - contains Honors CS Capstone documentation by Albert Lim and Chase Godwin
 
 CREDITS
-Albert Lim
-Chase Godwin
-Patrick Hilerio
-Dayton Chamberlin
-Anthony Schell
-Nick Wilson
+
+1. Albert Lim
+2. Chase Godwin
+3. Patrick Hilerio
+4. Dayton Chamberlin
+5. Anthony Schell
+6. Nick Wilson
