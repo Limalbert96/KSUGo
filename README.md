@@ -44,10 +44,13 @@ Special thanks to Nick Wilson for his substantial contributions to the backend a
 DOCUMENTATIONS
 
 KSUGo Documentations - contains SDP, Proposal, SRS, Middle Update, SDD, Final Update, and Final Binder of KSUGo Project
+
 Database and API Documentations - contains backend documentation by Nick Wilson
+
 Honors Documentations - contains Honors CS Capstone documentation by Albert Lim and Chase Godwin
 
 CREDITS
+
 Albert Lim
 Chase Godwin
 Patrick Hilerio
